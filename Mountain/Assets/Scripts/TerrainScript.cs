@@ -12,6 +12,4 @@ public class TerrainScript : MonoBehaviour {
 	void Update () {
 	
 	}
-
-
 }

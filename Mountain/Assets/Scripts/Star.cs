@@ -15,6 +15,4 @@ public class Star : MonoBehaviour {
 		// Slowly rotate the object around its X axis at 1 degree/second.
 		transform.Rotate(Vector3.right * Time.deltaTime * rotSpeed);
 	}
-
-
 }

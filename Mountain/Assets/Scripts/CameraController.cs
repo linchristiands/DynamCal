@@ -11,15 +11,14 @@ public class CameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		thisTransform = transform;
-		camZ = transform.position.z;
-
+		//camZ = transform.position.z;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		float x = cameraTarget.transform.position.x;
 		float y = cameraTarget.transform.position.y;
-
-		transform.position = new Vector3 (x, y, -100);
+		
+		thisTransform.position = new Vector3 (x, y, camZ);
 	}
 }

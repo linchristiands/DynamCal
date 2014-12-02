@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-
-
 	/*void OnTriggerStay(Collider other)
 	{
 		Debug.Log ("Stay");
@@ -29,32 +27,18 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	// 
-	void OnCollisionEnter(Collision c)
+	void OnCollisionEnter(Collision collision)
 	//void OnTriggerEnter(Collider other)
 	{
+		Debug.Log (collision.gameObject.tag);
 
-
-		Debug.Log("collision");
-		if (c.gameObject.tag == "BonusStar") {
-			
-			Destroy(c.gameObject);
+		if (collision.gameObject.tag == "Terrain") {
+		
 			isGrounding = true;
 		}
-
-
-
 
 		//Destroy(other.gameObject);
 		//Destroy (gameObject);
-	}
-
-	void OnTriggerEnter(Collider c){
-		Debug.Log("collision");
-		if (c.gameObject.tag == "BonusStar") {
-
-			Destroy(c.gameObject);
-			isGrounding = true;
-		}
 	}
 
 	void OnCollisionExit(Collision collision)
@@ -92,9 +76,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			Debug.Log ("Jump button");
 			if( isGrounding )
-			rigidbody.velocity += Vector3.up * 40;
+			rigidbody.velocity += Vector3.up * 20;
 		}
-
-
 	}
 }

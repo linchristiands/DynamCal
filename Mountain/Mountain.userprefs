@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\e2d\Generator\e2dCurveMethods.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\e2d\Editor\e2dTerrainEditor.cs">
     <Files>
-      <File FileName="Assets\e2d\Generator\e2dCurveMethods.cs" Line="9" Column="1" />
+      <File FileName="Assets\e2d\Editor\e2dTerrainEditor.cs" Line="78" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
