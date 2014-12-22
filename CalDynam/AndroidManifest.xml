@@ -28,6 +28,9 @@
         <activity
             android:name=".ConseilsActivity">
         </activity>
+        <activity
+            android:name=".AddUserActivity">
+        </activity>
     </application>
 
 </manifest>
