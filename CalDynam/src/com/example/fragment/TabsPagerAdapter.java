@@ -1,9 +1,5 @@
-package com.example.caldynam;
+package com.example.fragment;
 
-import com.example.fragment.GraphFragment;
-import com.example.fragment.InFragment;
-import com.example.fragment.OutFragment;
-import com.example.fragment.UserFragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,11 +21,9 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter{
             return new UserFragment();
         case 1:
           
-            return new InFragment();
+            return new MenuFragment();
+
         case 2:
-          
-            return new OutFragment();
-        case 3:
             
             return new GraphFragment();    
         }
@@ -40,6 +34,6 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter{
     @Override
     public int getCount() {
         // get number of tabs
-        return 4;
+        return 3;
     }
 }

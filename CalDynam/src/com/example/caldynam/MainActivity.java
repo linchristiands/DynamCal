@@ -1,5 +1,7 @@
 package com.example.caldynam;
 
+import com.example.fragment.TabsPagerAdapter;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
@@ -19,7 +21,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     // Tab titles
-    private String[] tabs = { "User", "In", "Out","Graph" };
+    private String[] tabs = { "Utilisateur", "Menu", "Graphe" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
