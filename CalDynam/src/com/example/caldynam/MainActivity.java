@@ -1,5 +1,7 @@
 package com.example.caldynam;
 
+import java.util.List;
+
 import com.example.fragment.TabsPagerAdapter;
 
 import android.app.ActionBar;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity implements TabListener{
 	
+
 	private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
@@ -86,4 +89,10 @@ public class MainActivity extends FragmentActivity implements TabListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public static class Globalvar
+	{
+		public static List<Exercise> exerciseList;
+	}
 }
+

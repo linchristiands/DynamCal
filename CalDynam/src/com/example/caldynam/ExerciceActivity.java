@@ -1,5 +1,6 @@
 package com.example.caldynam;
 
+import com.example.caldynam.MainActivity.Globalvar;
 import com.example.caldynam.R;
 
 import android.app.Activity;
@@ -21,6 +22,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+	    CreateOrCheckExList();
 	    getActionBar().hide();
 	    setContentView(R.layout.activity_exercice);
 	    btnRechercheExercice = (Button)findViewById(R.id.btnRechercheExercice);
@@ -47,6 +49,15 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 			setResult(RESULT_OK,i);
 			finish();
 			break;
+		}
+	}
+	
+	private void CreateOrCheckExList()
+	{
+		if(Globalvar.exerciseList.isEmpty())
+		{
+			Exercise ex = new Exercise(,"");
+			Globalvar.exerciseList.add(ex);
 		}
 	}
 
