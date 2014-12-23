@@ -16,7 +16,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	private Button btnRechercheExercice, btnTerminerExercice;
 	private EditText edtRechercheExercice;
 	private TextView txtListeExercice;
-	private int totalOUT;
+	private float totalOUT;
 	
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {

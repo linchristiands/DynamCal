@@ -1,10 +1,14 @@
 package com.example.fragment;
 
+import java.util.Map;
+
 import com.example.caldynam.AddUserActivity;
 import com.example.caldynam.AlimentationActivity;
 import com.example.caldynam.R;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
@@ -25,14 +29,15 @@ public class UserFragment extends Fragment implements OnClickListener {
 
 	private ListView lstUser;
 	private Button btnAddUser;
-	String[] users = {"Test1","Test2","Test3","Test4"};
-	
+	String[] users = new String[]{"","","","","","","","","","" };
+	ArrayAdapter<String> adapter;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_user, container, false);
+   		fillListView();
         lstUser = (ListView)rootView.findViewById(R.id.lstUser);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.listitem, users);
+        adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.listitem, users);
         lstUser.setAdapter(adapter);
         registerForContextMenu(lstUser);
         btnAddUser= (Button)rootView.findViewById(R.id.btnAddUser);
@@ -46,10 +51,12 @@ public class UserFragment extends Fragment implements OnClickListener {
 	    ContextMenuInfo menuInfo) {
 	  if (v.getId()==R.id.lstUser) {
 	    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+	    if(!users[info.position].equals("")){
 	    menu.setHeaderTitle(users[info.position]);
 	    String[] menuItems = {"sélectionner","modifier","supprimer"};
 	    for (int i = 0; i<menuItems.length; i++) {
 	      menu.add(Menu.NONE, i, i, menuItems[i]);
+	    }
 	    }
 	  }
 	}
@@ -61,8 +68,18 @@ public class UserFragment extends Fragment implements OnClickListener {
 	  String[] menuItems = {"sélectionner","modifier","supprimer"};
 	  String menuItemName = menuItems[menuItemIndex];
 	  String listItemName = users[info.position];
-	  System.out.println(menuItemName);
-	  System.out.println(listItemName);
+	  if(menuItemName.equals("supprimer")){
+			SharedPreferences sharedPref = getActivity().getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sharedPref.edit();
+			editor.remove(listItemName);
+			editor.commit();	
+			fillListView();
+			adapter.notifyDataSetChanged();
+			
+	  }
+	  else if(menuItemName.equals("modifier")){
+		  	
+	  }
 	  //text.setText(String.format("Selected %s for item %s", menuItemName, listItemName));
 	  return true;
 	}
@@ -78,7 +95,26 @@ public class UserFragment extends Fragment implements OnClickListener {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 	    if (requestCode == 1) { 
-	    	
+	    	fillListView();
+			adapter.notifyDataSetChanged();
 	    }
+	}
+	
+	private void fillListView(){
+		for(int i=0;i<users.length;i++){
+			users[i]="";
+		}
+		Context context = getActivity();
+		SharedPreferences sharedPref = context.getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPref.edit();
+		Map<String,?> keys = sharedPref.getAll();
+		int i=0;
+		for(Map.Entry<String,?> ent : keys.entrySet()){
+		            //Log.d("map values",ent.getKey() + ": " + 
+		            //                       ent.getValue().toString());    
+		            users[i]=ent.getKey();
+		            i++;
+		  
+		 }
 	}
 }

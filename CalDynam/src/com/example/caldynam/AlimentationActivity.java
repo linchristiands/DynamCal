@@ -34,7 +34,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	private Button btnRechercheAliment, btnTerminerAliment;
 	private EditText edtRechercheAliment;
 	private TextView txtListeAliment;
-	private int totalIN;
+	private float totalIN;
 	
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
