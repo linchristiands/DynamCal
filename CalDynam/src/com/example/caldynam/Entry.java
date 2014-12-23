@@ -61,7 +61,7 @@ public class Entry {
 	@Override
 	
 	public String toString(){
-		return String.valueOf(totalIN)+";"+String.valueOf(totalOUT)+";"+day+";"+month+";"+year;
+		return String.valueOf(totalIN)+"-"+String.valueOf(totalOUT)+"-"+day+"-"+month+"-"+year;
 	}
 }
 

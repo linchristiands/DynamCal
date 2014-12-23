@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.example.caldynam.AddUserActivity;
 import com.example.caldynam.AlimentationActivity;
+import com.example.caldynam.ModifUserActivity;
 import com.example.caldynam.R;
 
 import android.content.Context;
@@ -31,12 +32,14 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private Button btnAddUser;
 	String[] users = new String[]{"","","","","","","","","","" };
 	ArrayAdapter<String> adapter;
+	String temp;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_user, container, false);
    		fillListView();
         lstUser = (ListView)rootView.findViewById(R.id.lstUser);
+        System.out.println(users.toString());
         adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.listitem, users);
         lstUser.setAdapter(adapter);
         registerForContextMenu(lstUser);
@@ -77,7 +80,14 @@ public class UserFragment extends Fragment implements OnClickListener {
 			adapter.notifyDataSetChanged();
 			
 	  }
+	  
 	  else if(menuItemName.equals("modifier")){
+		  	temp = listItemName;
+		  	Intent i = new Intent(this.getActivity(), ModifUserActivity.class);
+		  	i.putExtra("Name", temp);
+			startActivityForResult(i, 1);
+	  }
+	  else if(menuItemName.equals("sélectionner")){
 		  	
 	  }
 	  //text.setText(String.format("Selected %s for item %s", menuItemName, listItemName));
@@ -101,12 +111,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 	}
 	
 	private void fillListView(){
-		for(int i=0;i<users.length;i++){
-			users[i]="";
-		}
+		
 		Context context = getActivity();
 		SharedPreferences sharedPref = context.getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = sharedPref.edit();
 		Map<String,?> keys = sharedPref.getAll();
 		int i=0;
 		for(Map.Entry<String,?> ent : keys.entrySet()){
@@ -116,5 +123,8 @@ public class UserFragment extends Fragment implements OnClickListener {
 		            i++;
 		  
 		 }
+		for(;i<users.length;i++){
+			users[i]="";
+		}
 	}
 }
