@@ -21,7 +21,7 @@ import android.widget.DatePicker;
 
 public class MenuFragment extends Fragment implements OnClickListener {
 	
-	private int totalIN, totalOUT;
+	private float totalIN, totalOUT;
 	private Button btnAlimentation, btnExercice, btnConseils, btnDate;
 	private Intent i;
 	private int day,month,year;
@@ -103,7 +103,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 
 	    if (requestCode == 1) { 
 	    	//On récupère le totalIN envoyé par AlimentationActivity
-	    	totalIN = data.getIntExtra("totalIN", 0);
+	    	totalIN = data.getFloatExtra("totalIN", 0);
 	    	
 	            
 	        
@@ -111,7 +111,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    }
 	    else if (requestCode == 2){
 	    	//On récupère le totalOUT renvoyé par ExerciceActivity
-	    	totalOUT = data.getIntExtra("totalOUT", 0);
+	    	totalOUT = data.getFloatExtra("totalOUT", 0);
 	    }
 	}
     

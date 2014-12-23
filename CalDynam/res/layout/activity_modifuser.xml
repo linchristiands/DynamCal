@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="20dp"
-        android:text="Créer un utilisateur"
+        android:text="Modifier un utilisateur"
         android:textSize="20dp"
         android:layout_centerInParent="true"/>
       

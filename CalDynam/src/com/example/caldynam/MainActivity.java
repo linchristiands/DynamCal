@@ -80,6 +80,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
+		mAdapter.notifyDataSetChanged();
 		viewPager.setCurrentItem(tab.getPosition());
 	}
 

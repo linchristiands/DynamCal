@@ -61,4 +61,17 @@ public class User {
 	public void setListe(ArrayList<Entry> liste) {
 		this.liste = liste;
 	}
+	
+	public String getKey(){
+		return nom+" "+prenom;
+	}
+	
+	@Override
+	public String toString(){
+		String s =  nom + ";"+prenom+";"+ String.valueOf(taille)+";"+String.valueOf(poids);
+		for(Entry ent : liste){
+			s = s+";"+ent.toString();
+		}
+		return s;
+	}
 }

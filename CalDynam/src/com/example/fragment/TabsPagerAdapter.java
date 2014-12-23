@@ -17,7 +17,7 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter{
  
         switch (index) {
         case 0:
-           
+        	
             return new UserFragment();
         case 1:
           
@@ -35,5 +35,10 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter{
     public int getCount() {
         // get number of tabs
         return 3;
+    }
+    
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

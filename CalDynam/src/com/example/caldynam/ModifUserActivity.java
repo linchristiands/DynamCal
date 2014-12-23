@@ -10,16 +10,17 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddUserActivity extends Activity implements OnClickListener{
+public class ModifUserActivity extends Activity implements OnClickListener{
 
 	private Button btnConfirmUser, btnCancelUser;
 	private EditText edtUserName, edtUserFirstName, edtUserWeight, edtUserHeight;
+	String username, userinfos;
 	
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    getActionBar().hide();
-	    setContentView(R.layout.activity_adduser);
+	    setContentView(R.layout.activity_modifuser);
 	    btnConfirmUser = (Button)findViewById(R.id.btnConfirmUser);
 	    btnConfirmUser.setOnClickListener(this);
 	    btnCancelUser = (Button)findViewById(R.id.btnCancelUser);
@@ -29,6 +30,14 @@ public class AddUserActivity extends Activity implements OnClickListener{
 	    edtUserWeight = (EditText)findViewById(R.id.edtUserWeight);
 	    edtUserHeight = (EditText)findViewById(R.id.edtUserHeight);
 	    
+	    username = getIntent().getStringExtra("Name");
+	    SharedPreferences sharedPref = this.getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
+		userinfos = sharedPref.getString(username, "");
+		String[] parts = userinfos.split(";");
+		edtUserName.setText(parts[0]);
+		edtUserFirstName.setText(parts[1]);
+		edtUserHeight.setText(parts[2]);
+		edtUserWeight.setText(parts[3]);
 	  }
 
 	@Override
@@ -36,12 +45,16 @@ public class AddUserActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.btnConfirmUser:
-			//écriture fichier utilisateur
+			
 			if(!edtUserName.getText().toString().equals("")&&!edtUserFirstName.getText().toString().equals("")&&!edtUserHeight.getText().toString().equals("")&&!edtUserWeight.getText().toString().equals("")){	
 			User user = new User(edtUserName.getText().toString(), edtUserFirstName.getText().toString(),Integer.parseInt(edtUserHeight.getText().toString()),Float.parseFloat(edtUserWeight.getText().toString()));		
 			Context context = this;
 			SharedPreferences sharedPref = context.getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sharedPref.edit();
+			//remove the old one
+			editor.remove(username);
+			editor.commit();	
+			//add the new one
 			editor.putString(user.getKey(), user.toString());
 			editor.commit();	
 			Intent i = new Intent();

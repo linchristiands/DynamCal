@@ -32,6 +32,9 @@
         <activity
             android:name=".AddUserActivity">
         </activity>
+        <activity
+            android:name=".ModifUserActivity">
+        </activity>
     </application>
 
 </manifest>

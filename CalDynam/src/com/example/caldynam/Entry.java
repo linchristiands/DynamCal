@@ -2,8 +2,8 @@ package com.example.caldynam;
 
 public class Entry {
 
-	private int totalIN;
-	private int totalOUT;
+	private float totalIN;
+	private float totalOUT;
 	private int day, month, year;
 	
 	public Entry(){
@@ -42,20 +42,26 @@ public class Entry {
 		this.day = day;
 	}
 
-	public int getTotalOUT() {
+	public float getTotalOUT() {
 		return totalOUT;
 	}
 
-	public void setTotalOUT(int totalOUT) {
+	public void setTotalOUT(float totalOUT) {
 		this.totalOUT = totalOUT;
 	}
 
-	public int getTotalIN() {
+	public float getTotalIN() {
 		return totalIN;
 	}
 
-	public void setTotalIN(int totalIN) {
+	public void setTotalIN(float totalIN) {
 		this.totalIN = totalIN;
+	}
+	
+	@Override
+	
+	public String toString(){
+		return String.valueOf(totalIN)+"-"+String.valueOf(totalOUT)+"-"+day+"-"+month+"-"+year;
 	}
 }
 
