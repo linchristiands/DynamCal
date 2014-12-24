@@ -5,17 +5,26 @@ public class Entry {
 	private float totalIN;
 	private float totalOUT;
 	private int day, month, year;
-	
-	public Entry(){
-		
+
+	public Entry() {
+
 	}
-	
-	public Entry(int d, int m, int y, int in, int out){
+
+	public Entry(int d, int m, int y, int in, int out) {
 		setTotalIN(in);
 		setTotalOUT(out);
 		setDay(d);
 		setMonth(m);
 		setYear(y);
+	}
+	
+	public Entry(String str){
+		String[] parts = str.split("-");
+		totalIN = Float.parseFloat(parts[0]);
+		totalOUT = Float.parseFloat(parts[1]);
+		day = Integer.parseInt(parts[2]);
+		month = Integer.parseInt(parts[3]);
+		year = Integer.parseInt(parts[4]);
 	}
 
 	public int getYear() {
@@ -57,11 +66,10 @@ public class Entry {
 	public void setTotalIN(float totalIN) {
 		this.totalIN = totalIN;
 	}
-	
+
 	@Override
-	
-	public String toString(){
-		return String.valueOf(totalIN)+"-"+String.valueOf(totalOUT)+"-"+day+"-"+month+"-"+year;
+	public String toString() {
+		return String.valueOf(totalIN) + "-" + String.valueOf(totalOUT) + "-"
+				+ day + "-" + month + "-" + year;
 	}
 }
-

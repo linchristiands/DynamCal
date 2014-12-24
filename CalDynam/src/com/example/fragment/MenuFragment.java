@@ -6,6 +6,7 @@ import com.example.caldynam.AlimentationActivity;
 import com.example.caldynam.ConseilsActivity;
 import com.example.caldynam.ExerciceActivity;
 import com.example.caldynam.R;
+import com.example.caldynam.User;
 
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
@@ -44,6 +45,14 @@ public class MenuFragment extends Fragment implements OnClickListener {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         btnDate.setText(day + " / " + (month + 1) + " / " + year);  
+        
+        //Il faut d'abord sélectionner un user
+        if(User.currentUser==null){
+        	btnAlimentation.setEnabled(false);
+        	btnExercice.setEnabled(false);
+        	btnConseils.setEnabled(false);
+        	btnDate.setEnabled(false);
+        }        
         return rootView;
     }
     
@@ -104,7 +113,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    if (requestCode == 1) { 
 	    	//On récupère le totalIN envoyé par AlimentationActivity
 	    	if(data!=null)
-	    	totalIN = data.getFloatExtra("totalIN", 0);
+			totalIN = data.getFloatExtra("totalIN", 0);
 	    	
 	            
 	        
@@ -113,7 +122,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    else if (requestCode == 2){
 	    	//On récupère le totalOUT renvoyé par ExerciceActivity
 	    	if(data!=null)
-	    	totalOUT = data.getFloatExtra("totalOUT", 0);
+			totalOUT = data.getFloatExtra("totalOUT", 0);
 	    }
 	}
     

@@ -17,14 +17,10 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter{
  
         switch (index) {
         case 0:
-        	
             return new UserFragment();
         case 1:
-          
             return new MenuFragment();
-
         case 2:
-            
             return new GraphFragment();    
         }
  

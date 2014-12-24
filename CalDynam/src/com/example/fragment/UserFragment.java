@@ -6,6 +6,7 @@ import com.example.caldynam.AddUserActivity;
 import com.example.caldynam.AlimentationActivity;
 import com.example.caldynam.ModifUserActivity;
 import com.example.caldynam.R;
+import com.example.caldynam.User;
 
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +40,6 @@ public class UserFragment extends Fragment implements OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_user, container, false);
    		fillListView();
         lstUser = (ListView)rootView.findViewById(R.id.lstUser);
-        System.out.println(users.toString());
         adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.listitem, users);
         lstUser.setAdapter(adapter);
         registerForContextMenu(lstUser);
@@ -74,6 +74,10 @@ public class UserFragment extends Fragment implements OnClickListener {
 	  if(menuItemName.equals("supprimer")){
 			SharedPreferences sharedPref = getActivity().getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sharedPref.edit();
+			if(User.currentUser!=null){
+			if(User.currentUser.getKey().equals(listItemName)){//si on supprime alors que profil actif
+				User.currentUser=null;
+			}}
 			editor.remove(listItemName);
 			editor.commit();	
 			fillListView();
@@ -88,7 +92,12 @@ public class UserFragment extends Fragment implements OnClickListener {
 			startActivityForResult(i, 1);
 	  }
 	  else if(menuItemName.equals("sélectionner")){
-		  	
+		  
+		  	 SharedPreferences sharedPref = getActivity().getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
+			String userinfos = sharedPref.getString(listItemName, "");
+				String[] parts = userinfos.split(";");
+				User.currentUser = new User(parts);//utilisateur courant, sélectionné, profil actif
+				
 	  }
 	  //text.setText(String.format("Selected %s for item %s", menuItemName, listItemName));
 	  return true;

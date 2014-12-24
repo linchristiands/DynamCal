@@ -5,21 +5,34 @@ import java.util.ArrayList;
 public class User {
 
 	public static User currentUser;
-	
+
 	private String nom;
 	private String prenom;
 	private int taille;
 	private float poids;
 	private ArrayList<Entry> liste;
-	
-	public User(){	}
-	
-	public User(String n, String p, int t, float po){
+
+	public User() {
+	}
+
+	public User(String n, String p, int t, float po) {
 		setNom(n);
 		setPrenom(p);
 		setTaille(t);
 		setPoids(po);
 		setListe(new ArrayList<Entry>());
+	}
+
+	public User(String[] parts) {
+		setNom(parts[0]);
+		setPrenom(parts[1]);
+		setTaille(Integer.parseInt(parts[2]));
+		setPoids(Float.parseFloat(parts[3]));
+		liste = new ArrayList<Entry>();
+		for(int i = 4; i < parts.length;i++){
+			Entry e = new Entry(parts[i]);
+			liste.add(e);
+		}
 	}
 
 	public float getPoids() {
@@ -61,16 +74,17 @@ public class User {
 	public void setListe(ArrayList<Entry> liste) {
 		this.liste = liste;
 	}
-	
-	public String getKey(){
-		return nom+" "+prenom;
+
+	public String getKey() {
+		return nom + " " + prenom;
 	}
-	
+
 	@Override
-	public String toString(){
-		String s =  nom + ";"+prenom+";"+ String.valueOf(taille)+";"+String.valueOf(poids);
-		for(Entry ent : liste){
-			s = s+";"+ent.toString();
+	public String toString() {
+		String s = nom + ";" + prenom + ";" + String.valueOf(taille) + ";"
+				+ String.valueOf(poids);
+		for (Entry ent : liste) {
+			s = s + ";" + ent.toString();
 		}
 		return s;
 	}
