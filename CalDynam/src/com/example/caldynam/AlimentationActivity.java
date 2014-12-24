@@ -40,6 +40,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	private TextView txtListeAliment;
 	private ListView ListViewAliment;
 	private float totalIN;
+	private ArrayList<Aliment> ListAliment;
 	private AlimListAdapter adapter;
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +53,19 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    txtListeAliment = (TextView) findViewById(R.id.txtListeAliment);
 	    ListViewAliment=(ListView)findViewById(R.id.AlimentList);
 	    totalIN=0;
-	    adapter = new AlimListAdapter(this,Globalvar.UserListAliment);
+	    ListAliment=new ArrayList<Aliment>();
+	    if(!Globalvar.UserListAliment.isEmpty())
+	    {
+	    	for(Aliment a : Globalvar.UserListAliment)
+	    	{
+	    		ListAliment.add(a);
+	    	}
+	    }
+	    adapter = new AlimListAdapter(this,ListAliment);
+	    ListViewAliment.setAdapter(adapter);
 	    btnRechercheAliment.setOnClickListener(this);
 	    btnTerminerAliment.setOnClickListener(this);
-	    
+
 	  }
 
 	@Override
@@ -183,6 +193,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				String userEntry=edtRechercheAliment.getText().toString();
 				String AlimCapitalized= userEntry.substring(0,1).toUpperCase()+userEntry.substring(1);
 				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
+				ListAliment.add(a);
 				Globalvar.UserListAliment.add(a);
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
