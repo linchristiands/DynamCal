@@ -8,6 +8,11 @@ public class Aliment {
 	private String nom;
 	private float nbCalorie;
 	
+	public Aliment(String nom,float calorie)
+	{
+		this.nom=nom;
+		this.nbCalorie=calorie;
+	}	
 	public Aliment(JSONObject al) throws JSONException
 	{
 		nom=al.getString("item_name");
@@ -21,7 +26,9 @@ public class Aliment {
 		return nbCalorie;
 	}
 	
-	public Aliment()
+	public String getCalString()
 	{
-	}	
+		return Float.toString(nbCalorie);
+	}
+
 }

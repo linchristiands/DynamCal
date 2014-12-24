@@ -103,6 +103,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 
 	    if (requestCode == 1) { 
 	    	//On récupère le totalIN envoyé par AlimentationActivity
+	    	if(data!=null)
 	    	totalIN = data.getFloatExtra("totalIN", 0);
 	    	
 	            
@@ -111,6 +112,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    }
 	    else if (requestCode == 2){
 	    	//On récupère le totalOUT renvoyé par ExerciceActivity
+	    	if(data!=null)
 	    	totalOUT = data.getFloatExtra("totalOUT", 0);
 	    }
 	}

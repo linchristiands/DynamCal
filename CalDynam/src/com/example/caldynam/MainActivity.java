@@ -1,5 +1,6 @@
 package com.example.caldynam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.fragment.TabsPagerAdapter;
@@ -93,7 +94,8 @@ public class MainActivity extends FragmentActivity implements TabListener{
 	
 	public static class Globalvar
 	{
-		public static List<Exercise> exerciseList;
+		public static ArrayList<Exercise> exerciseList;
+		public static ArrayList<Aliment> UserListAliment;
 	}
 }
 

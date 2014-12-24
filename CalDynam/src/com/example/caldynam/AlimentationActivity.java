@@ -3,6 +3,8 @@ package com.example.caldynam;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,15 +16,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.caldynam.R;
+import com.example.caldynam.MainActivity.Globalvar;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +38,9 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	private Button btnRechercheAliment, btnTerminerAliment;
 	private EditText edtRechercheAliment;
 	private TextView txtListeAliment;
+	private ListView ListViewAliment;
 	private float totalIN;
-	
+	private AlimListAdapter adapter;
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -42,7 +50,9 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    btnTerminerAliment = (Button)findViewById(R.id.btnTerminerAliment);
 	    edtRechercheAliment = (EditText) findViewById(R.id.edtRechercheAliment);
 	    txtListeAliment = (TextView) findViewById(R.id.txtListeAliment);
+	    ListViewAliment=(ListView)findViewById(R.id.AlimentList);
 	    totalIN=0;
+	    adapter = new AlimListAdapter(this,Globalvar.UserListAliment);
 	    btnRechercheAliment.setOnClickListener(this);
 	    btnTerminerAliment.setOnClickListener(this);
 	    
@@ -117,7 +127,6 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				JSONArray jArray = food.getJSONArray("hits");
 				JSONObject one=jArray.getJSONObject(0);
 				JSONObject foodFields = one.getJSONObject("fields");
-				txtListeAliment.setText(edtRechercheAliment.getText());
 				
 				new RetrieveCal().execute(foodFields.getString("item_id"));
 			} catch (JSONException e) {
@@ -171,6 +180,13 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    	  try {
 				JSONObject food = new JSONObject(res);
 				double calorie=food.getDouble("nf_calories");
+				String userEntry=edtRechercheAliment.getText().toString();
+				String AlimCapitalized= userEntry.substring(0,1).toUpperCase()+userEntry.substring(1);
+				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
+				Globalvar.UserListAliment.add(a);
+				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
+				ListViewAliment.setAdapter(adapter);
 				Toast.makeText(getApplicationContext(), "Item found, "+calorie+" calories added", Toast.LENGTH_SHORT).show();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
