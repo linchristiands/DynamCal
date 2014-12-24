@@ -40,6 +40,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	private TextView txtListeAliment;
 	private ListView ListViewAliment;
 	private float totalIN;
+	private String EntryAliment;
 	private ArrayList<Aliment> ListAliment;
 	private AlimListAdapter adapter;
 	@Override
@@ -86,6 +87,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			//Retourner le total des valeurs caloriques ajoutées 
 			Intent i = new Intent();
 			i.putExtra("totalIN",totalIN);
+			i.putExtra("EntryAliment" , EntryAliment);
 			setResult(RESULT_OK,i);
 			finish();
 			break;
@@ -188,6 +190,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	        // TODO: check this.exception 
 	        // TODO: do something with the feed
 	    	  try {
+	    		EntryAliment+=":";
 				JSONObject food = new JSONObject(res);
 				double calorie=food.getDouble("nf_calories");
 				String userEntry=edtRechercheAliment.getText().toString();
@@ -195,6 +198,8 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
 				ListAliment.add(a);
 				Globalvar.UserListAliment.add(a);
+				EntryAliment+=a.getName()+"-"+a.getCalString();
+				totalIN+=calorie;
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
 				ListViewAliment.setAdapter(adapter);
