@@ -40,8 +40,7 @@ public class ModifUserActivity extends Activity implements OnClickListener {
 		edtUserFirstName.setText(parts[1]);
 		edtUserHeight.setText(parts[2]);
 		edtUserWeight.setText(parts[3]);
-		edtUserName.setEnabled(false);
-		edtUserFirstName.setEnabled(false);
+		
 	}
 
 	@Override

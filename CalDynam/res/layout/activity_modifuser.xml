@@ -18,13 +18,13 @@
         android:text="Nom"
       />
       
-       <EditText 
-        android:id="@+id/edtUserName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-       android:maxLength="20"
-       android:digits="abcdefghijklmnopqrstuvwxyz-"
-       />   
+       <EditText
+           android:id="@+id/edtUserName"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:digits="abcdefghijklmnopqrstuvwxyz-"
+           android:enabled="false"
+           android:maxLength="20" />
        
        <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -36,6 +36,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
        android:maxLength="20"
+       android:enabled="false"
        android:digits="abcdefghijklmnopqrstuvwxyz-"
        />   
         
