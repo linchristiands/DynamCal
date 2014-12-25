@@ -38,10 +38,10 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	private Button btnRechercheAliment, btnTerminerAliment;
 	private EditText edtRechercheAliment;
 	private TextView txtListeAliment;
-	private ListView ListViewAliment;
+	private ListView listViewAliment;
 	private float totalIN;
-	private String EntryAliment;
-	private ArrayList<Aliment> ListAliment;
+	private String entryAliment;
+	private ArrayList<Aliment> listAliment;
 	private AlimListAdapter adapter;
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +52,18 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    btnTerminerAliment = (Button)findViewById(R.id.btnTerminerAliment);
 	    edtRechercheAliment = (EditText) findViewById(R.id.edtRechercheAliment);
 	    txtListeAliment = (TextView) findViewById(R.id.txtListeAliment);
-	    ListViewAliment=(ListView)findViewById(R.id.AlimentList);
+	    listViewAliment=(ListView)findViewById(R.id.AlimentList);
 	    totalIN=0;
-	    ListAliment=new ArrayList<Aliment>();
+	    listAliment=new ArrayList<Aliment>();
 	    if(!Globalvar.UserListAliment.isEmpty())
 	    {
 	    	for(Aliment a : Globalvar.UserListAliment)
 	    	{
-	    		ListAliment.add(a);
+	    		listAliment.add(a);
 	    	}
 	    }
-	    adapter = new AlimListAdapter(this,ListAliment);
-	    ListViewAliment.setAdapter(adapter);
+	    adapter = new AlimListAdapter(this,listAliment);
+	    listViewAliment.setAdapter(adapter);
 	    btnRechercheAliment.setOnClickListener(this);
 	    btnTerminerAliment.setOnClickListener(this);
 
@@ -87,7 +87,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			//Retourner le total des valeurs caloriques ajoutées 
 			Intent i = new Intent();
 			i.putExtra("totalIN",totalIN);
-			i.putExtra("EntryAliment" , EntryAliment);
+			i.putExtra("entryAliment" , entryAliment);
 			setResult(RESULT_OK,i);
 			finish();
 			break;
@@ -190,19 +190,19 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	        // TODO: check this.exception 
 	        // TODO: do something with the feed
 	    	  try {
-	    		EntryAliment+=":";
+	    		entryAliment+=":";
 				JSONObject food = new JSONObject(res);
 				double calorie=food.getDouble("nf_calories");
 				String userEntry=edtRechercheAliment.getText().toString();
 				String AlimCapitalized= userEntry.substring(0,1).toUpperCase()+userEntry.substring(1);
 				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
-				ListAliment.add(a);
+				listAliment.add(a);
 				Globalvar.UserListAliment.add(a);
-				EntryAliment+=a.getName()+"-"+a.getCalString();
+				entryAliment+=a.getName()+"-"+a.getCalString();
 				totalIN+=calorie;
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
-				ListViewAliment.setAdapter(adapter);
+				listViewAliment.setAdapter(adapter);
 				Toast.makeText(getApplicationContext(), "Item found, "+calorie+" calories added", Toast.LENGTH_SHORT).show();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

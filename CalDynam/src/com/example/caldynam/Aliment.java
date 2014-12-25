@@ -17,6 +17,11 @@ public class Aliment {
 	{
 		nom=al.getString("item_name");
 	}
+	public Aliment(String str) {
+		String[] parts = str.split("-");
+		nom = parts[0];
+		nbCalorie = Float.parseFloat(parts[1]);
+	}
 	public String getName()
 	{
 		return nom;
@@ -29,6 +34,11 @@ public class Aliment {
 	public String getCalString()
 	{
 		return Float.toString(nbCalorie);
+	}
+	
+	@Override
+	public String toString() {
+		return nom+"-"+nbCalorie;
 	}
 
 }

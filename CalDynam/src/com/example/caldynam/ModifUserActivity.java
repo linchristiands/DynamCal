@@ -1,7 +1,5 @@
 package com.example.caldynam;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +16,6 @@ public class ModifUserActivity extends Activity implements OnClickListener {
 	private EditText edtUserName, edtUserFirstName, edtUserWeight,
 			edtUserHeight;
 	private String username, userinfos;
-	private ArrayList<Entry> liste;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +40,8 @@ public class ModifUserActivity extends Activity implements OnClickListener {
 		edtUserFirstName.setText(parts[1]);
 		edtUserHeight.setText(parts[2]);
 		edtUserWeight.setText(parts[3]);
-		liste = new ArrayList<Entry>();
-		for(int i = 4; i < parts.length;i++){
-			Entry e = new Entry(parts[i]);
-			liste.add(e);
-		}
+		edtUserName.setEnabled(false);
+		edtUserFirstName.setEnabled(false);
 	}
 
 	@Override
@@ -77,7 +71,6 @@ public class ModifUserActivity extends Activity implements OnClickListener {
 				editor.commit();
 				
 				// add the new one
-				user.setListe(liste);
 				editor.putString(user.getKey(), user.toString());
 				editor.commit();
 				Intent i = new Intent();

@@ -10,6 +10,12 @@ public class Exercise {
 		calorieUsed=cal;
 		exerciseName=nom;
 	}
+	public Exercise(String str) {
+		String[] parts = str.split("-");
+		exerciseName = parts[0];
+		calorieUsed = Float.parseFloat(parts[1]);
+		
+	}
 	public String getName()
 	{
 		return exerciseName;
@@ -17,5 +23,10 @@ public class Exercise {
 	public float calorieUsed()
 	{
 		return calorieUsed;
+	}
+	
+	@Override
+	public String toString() {
+		return exerciseName+"-"+calorieUsed;
 	}
 }
