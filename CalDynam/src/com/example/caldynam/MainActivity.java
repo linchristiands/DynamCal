@@ -1,14 +1,20 @@
 package com.example.caldynam;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.fragment.TabsPagerAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -62,6 +68,16 @@ public class MainActivity extends FragmentActivity implements TabListener {
 
 			}
 		});
+		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
+		String json = mPrefs.getString("ExList", "");
+		Gson gson = new Gson();
+		Type type=new TypeToken<ArrayList<Exercise>>(){}.getType();
+		Globalvar.exerciseList=gson.fromJson(json, type);
+		if(Globalvar.exerciseList.isEmpty())
+		{
+			Globalvar.populateExerciseList();
+		}
+
 	}
 
 	@Override
@@ -84,10 +100,98 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	public void OnDestroy()
+	{
+		saveExList();
+	}
+	public void saveExList()
+	{
+			Globalvar.populateExerciseList();
+			SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+			Editor prefsEditor = mPrefs.edit();
+			Gson gson = new Gson();
+		    String json = gson.toJson(Globalvar.exerciseList);
+		    prefsEditor.putString("ExList", json);
+		    prefsEditor.commit();
+	}
+	
 	public static class Globalvar
 	{
-		public static ArrayList<Exercise> exerciseList=new ArrayList<Exercise>();
+	
 		public static ArrayList<Aliment> UserListAliment=new ArrayList<Aliment>();
+		public static ArrayList<Exercise> exerciseList=new ArrayList<Exercise>();
+		
+		public static void setExList(ArrayList<Exercise> a)
+		{
+			exerciseList=a;
+		}
+		public static void setAlimList(ArrayList<Aliment> a)
+		{
+			UserListAliment=a;
+		}
+		
+		public static void populateExerciseList()
+		{
+			Exercise ex= new Exercise("Aquagym",15.15f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Badminton",15.15f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("BaseBall", 12.19f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Basket-Ball", 10.2f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Body-Building", 10.2f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Body metabolism", 1f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Bowling", 20.4f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Boxing", 6.75f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Climbing", 5.5f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Climb stairs", 4.06f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Cycling", 10f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Fencing", 10.2f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Football", 6.2f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Handball", 5.07f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Hunting", 12.19f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Jogging", 8.6f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Judo", 6.09f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Karate", 6.09f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Resting", 1f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Rugby", 6.09f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Running", 7.63f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Skipping Rope", 6.09f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Squash", 5.07f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Swimming", 9.09f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Tennis", 7.63f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Vacuum", 10.2f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Volley-Ball", 14.3f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Walking", 20f);
+			Globalvar.exerciseList.add(ex);
+			ex= new Exercise("Weightlifting", 20.4f);
+			Globalvar.exerciseList.add(ex);
+			
+		}
 	}
 }

@@ -5,7 +5,7 @@ public class Exercise {
 	private float calorieUsed;
 	private String exerciseName;
 	
-	public Exercise(float cal,String nom)
+	public Exercise(String nom,float cal)
 	{
 		calorieUsed=cal;
 		exerciseName=nom;
@@ -25,6 +25,21 @@ public class Exercise {
 		return calorieUsed;
 	}
 	
+	public void setName(String name)
+	{
+		this.exerciseName=name;
+	}
+	
+	public void setCal(float cal)
+	{
+		this.calorieUsed=cal;
+	}
+	
+	public void setCalAndName(String name,float cal)
+	{
+		this.exerciseName=name;
+		this.calorieUsed=cal;
+	}
 	@Override
 	public String toString() {
 		return exerciseName+"-"+calorieUsed;
