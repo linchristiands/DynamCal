@@ -1,15 +1,22 @@
 package com.example.fragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.example.caldynam.Aliment;
 import com.example.caldynam.AlimentationActivity;
 import com.example.caldynam.ConseilsActivity;
+import com.example.caldynam.EntryAliment;
+import com.example.caldynam.EntryExercice;
 import com.example.caldynam.ExerciceActivity;
+import com.example.caldynam.Exercise;
 import com.example.caldynam.R;
 import com.example.caldynam.User;
 
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,6 +33,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	private Button btnAlimentation, btnExercice, btnConseils, btnDate;
 	private Intent i;
 	private int day,month,year;
+	private String entryAliment, entryExercise;
 	
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -111,18 +119,40 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 	    if (requestCode == 1) { 
-	    	//On récupère le totalIN envoyé par AlimentationActivity
-	    	if(data!=null)
+	    	//On ecrit l'entry dans un sharedpref
+	    	if(data!=null){
 			totalIN = data.getFloatExtra("totalIN", 0);
+	    	entryAliment = data.getStringExtra("entryAliment");	
+	    	String[] parts = entryAliment.split(":");
+	    	ArrayList<Aliment> lst = new ArrayList<Aliment>();
+	    	for(int i=0;i<parts.length;i++){
+	    		lst.add(new Aliment(parts[i]));
+	    	}
+	    	EntryAliment e = new EntryAliment(User.currentUser.getKey(), totalIN, day, month, year, lst);
+	    	//write the entryAlim
+	    	SharedPreferences sharedPref = getActivity().getSharedPreferences("EntryAlim", Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sharedPref.edit();
+			editor.putString(User.currentUser.getKey(), e.toString());
+			editor.commit();	
 	    	
-	            
-	        
-	        
+	    	}        
 	    }
 	    else if (requestCode == 2){
-	    	//On récupère le totalOUT renvoyé par ExerciceActivity
+	    	//On écrit l'entry dans un sharedpref
 	    	if(data!=null)
 			totalOUT = data.getFloatExtra("totalOUT", 0);
+	    	entryExercise = data.getStringExtra("entryExercise");	
+	    	String[] parts = entryExercise.split(":");
+	    	ArrayList<Exercise> lst = new ArrayList<Exercise>();
+	    	for(int i=0;i<parts.length;i++){
+	    		lst.add(new Exercise(parts[i]));
+	    	}
+	    	EntryExercice e = new EntryExercice(User.currentUser.getKey(), totalIN, day, month, year, lst);
+	    	//write the entryExercice
+	    	SharedPreferences sharedPref = getActivity().getSharedPreferences("EntryExo", Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sharedPref.edit();
+			editor.putString(User.currentUser.getKey(), e.toString());
+			editor.commit();	
 	    }
 	}
     
