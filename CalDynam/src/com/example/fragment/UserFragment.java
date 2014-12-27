@@ -56,7 +56,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
 	    if(!users[info.position].equals("")){
 	    menu.setHeaderTitle(users[info.position]);
-	    String[] menuItems = {"sélectionner","modifier","supprimer"};
+	    String[] menuItems = {"select","modify","delete"};
 	    for (int i = 0; i<menuItems.length; i++) {
 	      menu.add(Menu.NONE, i, i, menuItems[i]);
 	    }
@@ -68,10 +68,10 @@ public class UserFragment extends Fragment implements OnClickListener {
 	public boolean onContextItemSelected(MenuItem item) {
 	  AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 	  int menuItemIndex = item.getItemId();
-	  String[] menuItems = {"sélectionner","modifier","supprimer"};
+	  String[] menuItems = {"select","modify","delete"};
 	  String menuItemName = menuItems[menuItemIndex];
 	  String listItemName = users[info.position];
-	  if(menuItemName.equals("supprimer")){
+	  if(menuItemName.equals("delete")){
 			SharedPreferences sharedPref = getActivity().getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sharedPref.edit();
 			if(User.currentUser!=null){
@@ -85,13 +85,13 @@ public class UserFragment extends Fragment implements OnClickListener {
 			
 	  }
 	  
-	  else if(menuItemName.equals("modifier")){
+	  else if(menuItemName.equals("modify")){
 		  	temp = listItemName;
 		  	Intent i = new Intent(this.getActivity(), ModifUserActivity.class);
 		  	i.putExtra("Name", temp);
 			startActivityForResult(i, 1);
 	  }
-	  else if(menuItemName.equals("sélectionner")){
+	  else if(menuItemName.equals("select")){
 		  
 		  	 SharedPreferences sharedPref = getActivity().getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
 			String userinfos = sharedPref.getString(listItemName, "");

@@ -1,5 +1,7 @@
 package com.example.caldynam;
 
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +41,7 @@ public class AddUserActivity extends Activity implements OnClickListener{
 			//écriture fichier utilisateur
 			if(!edtUserName.getText().toString().equals("")&&!edtUserFirstName.getText().toString().equals("")&&!edtUserHeight.getText().toString().equals("")&&!edtUserWeight.getText().toString().equals("")){	
 			User user = new User(edtUserName.getText().toString(), edtUserFirstName.getText().toString(),Integer.parseInt(edtUserHeight.getText().toString()),Float.parseFloat(edtUserWeight.getText().toString()));		
+			if(!checkExist(user.getKey())){
 			Context context = this;
 			SharedPreferences sharedPref = context.getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sharedPref.edit();
@@ -48,6 +51,7 @@ public class AddUserActivity extends Activity implements OnClickListener{
 			setResult(RESULT_OK, i);
 			finish();
 			}
+			}
 			break;
 			
 		case R.id.btnCancelUser:
@@ -56,5 +60,19 @@ public class AddUserActivity extends Activity implements OnClickListener{
 			finish();
 			break;
 		}
+	}
+
+	private boolean checkExist(String username) {
+		SharedPreferences sharedPref = this.getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
+		Map<String,?> keys = sharedPref.getAll();
+		int i=0;
+		for(Map.Entry<String,?> ent : keys.entrySet()){
+		            
+		            if(ent.getKey().equals(username)){
+		            	return true;
+		            }
+		  
+		 }
+		return false;
 	}
 }
