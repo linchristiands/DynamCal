@@ -68,16 +68,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 
 			}
 		});
-		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
-		String json = mPrefs.getString("ExList", "");
-		Gson gson = new Gson();
-		Type type=new TypeToken<ArrayList<Exercise>>(){}.getType();
-		Globalvar.exerciseList=gson.fromJson(json, type);
-		if(Globalvar.exerciseList.isEmpty())
-		{
-			Globalvar.populateExerciseList();
-		}
-
+		getExList();
 	}
 
 	@Override
@@ -104,6 +95,20 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	public void OnDestroy()
 	{
 		saveExList();
+	}
+	
+	public void getExList()
+	{
+		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
+		String json = mPrefs.getString("ExList", "");
+		Gson gson = new Gson();
+		Type type=new TypeToken<ArrayList<Exercise>>(){}.getType();
+		Globalvar.exerciseList=gson.fromJson(json, type);
+		if(Globalvar.exerciseList==null)
+		{
+			Globalvar.populateExerciseList();
+		}
+
 	}
 	public void saveExList()
 	{
