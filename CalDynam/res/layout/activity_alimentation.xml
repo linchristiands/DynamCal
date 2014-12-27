@@ -7,7 +7,7 @@
       <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Recherche d'aliments"
+        android:text="Food Search"
         android:textSize="20dp"
         android:layout_centerInParent="true"/>
       
@@ -29,14 +29,14 @@
         android:id="@+id/btnRechercheAliment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rechercher"
+        android:text="Find"
     />
        
         <Button
         android:id="@+id/btnTerminerAliment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Terminer"
+        android:text="Finish"
     />
        
       </LinearLayout>     

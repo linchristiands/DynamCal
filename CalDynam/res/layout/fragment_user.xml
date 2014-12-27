@@ -10,7 +10,7 @@
 	android:id="@+id/btnAddUser"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:text="Créer un utilisateur"
+	android:text="Create User"
 	android:layout_margin="10dp"
 	android:textColor="#FFFFFF"
 	android:background="@drawable/customshape"

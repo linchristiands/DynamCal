@@ -55,9 +55,9 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    listViewAliment=(ListView)findViewById(R.id.AlimentList);
 	    totalIN=0;
 	    listAliment=new ArrayList<Aliment>();
-	    if(!Globalvar.UserListAliment.isEmpty())
+	    if(!Globalvar.userListAliment.isEmpty())
 	    {
-	    	for(Aliment a : Globalvar.UserListAliment)
+	    	for(Aliment a : Globalvar.userListAliment)
 	    	{
 	    		listAliment.add(a);
 	    	}
@@ -197,7 +197,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				String AlimCapitalized= userEntry.substring(0,1).toUpperCase()+userEntry.substring(1);
 				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
 				listAliment.add(a);
-				Globalvar.UserListAliment.add(a);
+				Globalvar.userListAliment.add(a);
 				entryAliment+=a.getName()+"-"+a.getCalString();
 				totalIN+=calorie;
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);

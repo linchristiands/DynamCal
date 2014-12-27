@@ -15,7 +15,7 @@
           
       <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Nom"
+        android:text="Last Name"
       />
       
        <EditText 
@@ -28,7 +28,7 @@
        
        <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Prénom"
+        android:text="First Name"
       />
       
        <EditText 
@@ -36,12 +36,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
        android:maxLength="20"
-       android:digits="abcdefghijklmnopqrstuvwxyz-"
+       android:digits="abcdefghijklmnopqrstuvwxyz- "
        />   
         
        <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Poids (kg)"
+        android:text="Weight (kg)"
       />
       
        <EditText 
@@ -54,7 +54,7 @@
        
        <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Taille (cm)"
+        android:text="Height (cm)"
       />
       
        <EditText 
@@ -75,14 +75,14 @@
         android:id="@+id/btnConfirmUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirmer"
+        android:text="Confirm"
     />
        
         <Button
         android:id="@+id/btnCancelUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Annuler"
+        android:text="Cancel"
     />
        
       </LinearLayout>     

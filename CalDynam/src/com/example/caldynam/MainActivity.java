@@ -26,7 +26,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
 	// Tab titles
-	private String[] tabs = { "Utilisateur", "Menu", "Graphe" };
+	private String[] tabs = { "User", "Menu", "Graph" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +119,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	public static class Globalvar
 	{
 	
-		public static ArrayList<Aliment> UserListAliment=new ArrayList<Aliment>();
+		public static ArrayList<Aliment> userListAliment=new ArrayList<Aliment>();
 		public static ArrayList<Exercise> exerciseList=new ArrayList<Exercise>();
 		
 		public static void setExList(ArrayList<Exercise> a)
@@ -128,7 +128,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		}
 		public static void setAlimList(ArrayList<Aliment> a)
 		{
-			UserListAliment=a;
+			userListAliment=a;
 		}
 		
 		public static void populateExerciseList()
