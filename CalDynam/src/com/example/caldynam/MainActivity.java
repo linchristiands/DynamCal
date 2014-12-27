@@ -138,6 +138,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		
 		public static void populateExerciseList()
 		{
+			Globalvar.exerciseList=new ArrayList<Exercise>();
 			Exercise ex= new Exercise("Aquagym",15.15f);
 			Globalvar.exerciseList.add(ex);
 			ex= new Exercise("Badminton",15.15f);
