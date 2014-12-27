@@ -1,5 +1,7 @@
 package com.example.caldynam;
 
+import java.util.ArrayList;
+
 public class User {
 
 	public static User currentUser;

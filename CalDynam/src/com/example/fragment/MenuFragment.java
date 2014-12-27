@@ -12,6 +12,7 @@ import com.example.caldynam.ExerciceActivity;
 import com.example.caldynam.Exercise;
 import com.example.caldynam.R;
 import com.example.caldynam.User;
+import com.example.caldynam.MainActivity.Globalvar;
 
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -123,36 +124,32 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    	if(data!=null){
 			totalIN = data.getFloatExtra("totalIN", 0);
 	    	entryAliment = data.getStringExtra("entryAliment");	
+	    	if(entryAliment.length()>1){
 	    	String[] parts = entryAliment.split(":");
 	    	ArrayList<Aliment> lst = new ArrayList<Aliment>();
 	    	for(int i=0;i<parts.length;i++){
 	    		lst.add(new Aliment(parts[i]));
 	    	}
 	    	EntryAliment e = new EntryAliment(User.currentUser.getKey(), totalIN, day, month, year, lst);
-	    	//write the entryAlim
-	    	SharedPreferences sharedPref = getActivity().getSharedPreferences("EntryAlim", Context.MODE_PRIVATE);
-			SharedPreferences.Editor editor = sharedPref.edit();
-			editor.putString(User.currentUser.getKey(), e.toString());
-			editor.commit();	
-	    	
+	    	Globalvar.entryAlimList.add(e);
 	    	}        
+	    	}
 	    }
 	    else if (requestCode == 2){
 	    	//On écrit l'entry dans un sharedpref
-	    	if(data!=null)
+	    	if(data!=null){
 			totalOUT = data.getFloatExtra("totalOUT", 0);
 	    	entryExercise = data.getStringExtra("entryExercise");	
+	    	if(entryExercise.length()>1){
 	    	String[] parts = entryExercise.split(":");
 	    	ArrayList<Exercise> lst = new ArrayList<Exercise>();
 	    	for(int i=0;i<parts.length;i++){
 	    		lst.add(new Exercise(parts[i]));
 	    	}
 	    	EntryExercice e = new EntryExercice(User.currentUser.getKey(), totalIN, day, month, year, lst);
-	    	//write the entryExercice
-	    	SharedPreferences sharedPref = getActivity().getSharedPreferences("EntryExo", Context.MODE_PRIVATE);
-			SharedPreferences.Editor editor = sharedPref.edit();
-			editor.putString(User.currentUser.getKey(), e.toString());
-			editor.commit();	
+	    	Globalvar.entryExoList.add(e);
+	    	}
+	    	}
 	    }
 	}
     

@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.provider.Settings.Global;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -69,6 +70,8 @@ public class MainActivity extends FragmentActivity implements TabListener {
 			}
 		});
 		getExList();
+		getEntryAlimList();
+		getEntryExoList();
 	}
 
 	@Override
@@ -95,6 +98,8 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	public void OnDestroy()
 	{
 		saveExList();
+		saveEntryExoList();
+		saveEntryAlimList();
 	}
 	
 	public void getExList()
@@ -108,8 +113,8 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		{
 			Globalvar.populateExerciseList();
 		}
-
 	}
+	
 	public void saveExList()
 	{
 			Globalvar.populateExerciseList();
@@ -121,11 +126,57 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		    prefsEditor.commit();
 	}
 	
+	public void getEntryExoList()
+	{
+		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
+		String str = mPrefs.getString("EntryExoList", null);
+		if(str != null){
+			String[] parts = str.split("/");
+			for(int i=0;i<parts.length;i++){
+				Globalvar.entryExoList.add(new EntryExercice(parts[i]));
+			}
+		}
+
+	}
+	
+	public void saveEntryExoList()
+	{
+			SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+			Editor prefsEditor = mPrefs.edit();
+		    prefsEditor.putString("EntryExoList", Globalvar.toStringEntryExo());
+		    prefsEditor.commit();
+	}
+	
+	public void getEntryAlimList()
+	{
+		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
+		String str = mPrefs.getString("EntryAlimList", null);
+		if(str != null){
+			String[] parts = str.split("/");
+			for(int i=0;i<parts.length;i++){
+				Globalvar.entryAlimList.add(new EntryAliment(parts[i]));
+			}
+		}
+	}
+	
+	public void saveEntryAlimList()
+	{
+			SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+			Editor prefsEditor = mPrefs.edit();
+		    prefsEditor.putString("EntryAlimList", Globalvar.toStringEntryAlim());
+		    prefsEditor.commit();
+	}
+	
+	
+	
+	
 	public static class Globalvar
 	{
 	
 		public static ArrayList<Aliment> userListAliment=new ArrayList<Aliment>();
 		public static ArrayList<Exercise> exerciseList=new ArrayList<Exercise>();
+		public static ArrayList<EntryAliment> entryAlimList=new ArrayList<EntryAliment>();
+		public static ArrayList<EntryExercice> entryExoList=new ArrayList<EntryExercice>();
 		
 		public static void setExList(ArrayList<Exercise> a)
 		{
@@ -134,6 +185,30 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		public static void setAlimList(ArrayList<Aliment> a)
 		{
 			userListAliment=a;
+		}
+		
+		public static String toStringEntryAlim()
+		{
+			if(entryAlimList != null){
+				String str="";
+				for(EntryAliment e : entryAlimList){
+					str = str + e.toString()+"/";
+				}
+				return str;
+			}
+			return null;
+		}
+		
+		public static String toStringEntryExo()
+		{
+			if(entryExoList != null){
+				String str="";
+				for(EntryExercice e : entryExoList){
+					str = str + e.toString()+"/";
+				}
+				return str;
+			}
+			return null;
 		}
 		
 		public static void populateExerciseList()

@@ -54,6 +54,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    txtListeAliment = (TextView) findViewById(R.id.txtListeAliment);
 	    listViewAliment=(ListView)findViewById(R.id.AlimentList);
 	    totalIN=0;
+	    entryAliment="";
 	    listAliment=new ArrayList<Aliment>();
 	    if(!Globalvar.userListAliment.isEmpty())
 	    {
@@ -82,15 +83,13 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			
 			
 		case R.id.btnTerminerAliment:
-			//bouton Terminer
-
-			//Retourner le total des valeurs caloriques ajoutées 
+		
 			Intent i = new Intent();
 			i.putExtra("totalIN",totalIN);
 			i.putExtra("entryAliment" , entryAliment);
 			setResult(RESULT_OK,i);
 			finish();
-			break;
+			
 		}
 	}
 	class RetrieveID extends AsyncTask<String, Void, String> {
