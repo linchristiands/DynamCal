@@ -23,9 +23,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,35 +45,32 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	private EditText edtRechercheAliment;
 	private TextView txtListeAliment;
 	private ListView listViewAliment;
+	private ListView listViewSearchAliment;
 	private float totalIN;
 	private String entryAliment;
-	private ArrayList<Aliment> listAliment;
 	private AlimListAdapter adapter;
+	private AlimSearchListAdapter searchAdapter;
+	private  ArrayList<String> foundItem;
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    getActionBar().hide();
+	    Globalvar.AlimAct=this;
 	    setContentView(R.layout.activity_alimentation);
 	    btnRechercheAliment = (Button)findViewById(R.id.btnRechercheAliment);
 	    btnTerminerAliment = (Button)findViewById(R.id.btnTerminerAliment);
 	    edtRechercheAliment = (EditText) findViewById(R.id.edtRechercheAliment);
-	    txtListeAliment = (TextView) findViewById(R.id.txtListeAliment);
 	    listViewAliment=(ListView)findViewById(R.id.AlimentList);
+	    listViewSearchAliment=(ListView)findViewById(R.id.AlimentSearchList);
 	    totalIN=0;
 	    entryAliment="";
-	    listAliment=new ArrayList<Aliment>();
-	    if(!Globalvar.userListAliment.isEmpty())
-	    {
-	    	for(Aliment a : Globalvar.userListAliment)
-	    	{
-	    		listAliment.add(a);
-	    	}
-	    }
-	    adapter = new AlimListAdapter(this,listAliment);
+	    foundItem = new ArrayList<String>();
+	    adapter = new AlimListAdapter(this,Globalvar.userListAliment);
+	    searchAdapter = new AlimSearchListAdapter(this,foundItem);
 	    listViewAliment.setAdapter(adapter);
 	    btnRechercheAliment.setOnClickListener(this);
 	    btnTerminerAliment.setOnClickListener(this);
-
+	    registerForContextMenu(listViewAliment);
 	  }
 
 	@Override
@@ -78,6 +81,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			//bouton Ajouter
 			//Rechercher l'aliment entré dans edtRechercheAliment avec l'API, récupérer la valeur calorique et l'ajouter au totalIN si trouvé 
 			//et ajouter l'aliment dans la liste txtListeAliment si trouvé
+			foundItem.clear();
 			new RetrieveID().execute();
 			break;
 			
@@ -92,6 +96,39 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			
 		}
 	}
+	
+	public void setViewWithData(double cal,String txt)
+	{
+		listViewAliment.setAdapter(adapter);
+		totalIN+=cal;
+		entryAliment+=txt;
+	}
+	public void RefreshListView()
+	{
+		listViewAliment.setAdapter(adapter);
+	}
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
+	    super.onCreateContextMenu(menu, v, menuInfo);
+
+	    menu.setHeaderTitle("");
+	    menu.add(0, v.getId(), 0, "Delete");
+
+	}
+	@Override 
+    public boolean onContextItemSelected(MenuItem item)
+    { 
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		int IndexSelected=info.position;              
+		if(item.getTitle()=="Delete")
+		{
+			Globalvar.userListAliment.remove(IndexSelected);
+			RefreshListView();
+		}
+		return true; 
+               
+                           
+      }  
 	class RetrieveID extends AsyncTask<String, Void, String> {
 
 	    private Exception exception;
@@ -134,12 +171,21 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	        // TODO: check this.exception 
 	        // TODO: do something with the feed
 	    	  try {
+	    		
 				JSONObject food = new JSONObject(res);
 				JSONArray jArray = food.getJSONArray("hits");
 				JSONObject one=jArray.getJSONObject(0);
 				JSONObject foodFields = one.getJSONObject("fields");
-				
-				new RetrieveCal().execute(foodFields.getString("item_id"));
+				for(int i=0;i<jArray.length();i++)
+				{
+					JSONObject item =jArray.getJSONObject(i);
+					JSONObject fields = item.getJSONObject("fields");
+					foundItem.add(fields.getString("item_name")+" - "+fields.getString("brand_name")+":"+fields.getString("item_id"));
+				}
+				listViewSearchAliment.setAdapter(searchAdapter);
+				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
+				//new RetrieveCal().execute(foodFields.getString("item_id"));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -147,7 +193,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    }
 	}
 	
-	class RetrieveCal extends AsyncTask<String, Void, String> {
+ class RetrieveCal extends AsyncTask<String, Void, String> {
 
 	    private Exception exception;
 
@@ -195,7 +241,6 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				String userEntry=edtRechercheAliment.getText().toString();
 				String AlimCapitalized= userEntry.substring(0,1).toUpperCase()+userEntry.substring(1);
 				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
-				listAliment.add(a);
 				Globalvar.userListAliment.add(a);
 				entryAliment+=a.getName()+"-"+a.getCalString();
 				totalIN+=calorie;

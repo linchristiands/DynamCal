@@ -16,6 +16,10 @@ public class Exercise {
 		calorieUsed = Float.parseFloat(parts[1]);
 		
 	}
+	public Exercise()
+	{
+		
+	}
 	public String getName()
 	{
 		return exerciseName;

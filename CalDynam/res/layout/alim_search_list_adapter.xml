@@ -2,20 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
-    <TextView android:id="@+id/AlimName"
+    <TextView android:id="@+id/AlimSearchName"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:layout_alignParentLeft="true"
      android:layout_centerInParent="true"
-     android:layout_marginLeft="10dp"
-     android:layout_marginRight="100dp"
+     android:layout_marginRight="80dp"
       />
-    <TextView
-      android:id="@+id/CalorieAlim"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_alignParentRight="true"
-     android:layout_alignBaseline="@id/AlimName"
-     />
-
+    <Button android:id="@+id/addAlButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="+" />
 </RelativeLayout>

@@ -172,8 +172,10 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	
 	public static class Globalvar
 	{
-	
+		public static AlimentationActivity AlimAct;
+		public static ExerciceActivity ExAct;
 		public static ArrayList<Aliment> userListAliment=new ArrayList<Aliment>();
+		public static ArrayList<Exercise>userListExercise=new ArrayList<Exercise>();
 		public static ArrayList<Exercise> exerciseList=new ArrayList<Exercise>();
 		public static ArrayList<EntryAliment> entryAlimList=new ArrayList<EntryAliment>();
 		public static ArrayList<EntryExercice> entryExoList=new ArrayList<EntryExercice>();

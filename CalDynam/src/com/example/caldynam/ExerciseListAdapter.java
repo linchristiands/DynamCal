@@ -10,28 +10,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class AlimListAdapter extends ArrayAdapter<Aliment>{
+public class ExerciseListAdapter extends ArrayAdapter<Exercise>{
 	
-	public AlimListAdapter(Context context, ArrayList<Aliment> alim) 
+	public ExerciseListAdapter(Context context, ArrayList<Exercise> e) 
 	{
-	       super(context, 0, alim);   
+	       super(context, 0, e);   
 	}
 	
 	 @Override
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	       // Get the data item for this position
-	       Aliment a = getItem(position);    
+	       Exercise e = getItem(position);    
 	       // Check if an existing view is being reused, otherwise inflate the view
 	       if (convertView == null) {
-	          convertView = LayoutInflater.from(getContext()).inflate(R.layout.alim_list_adapter, parent, false);
+	          convertView = LayoutInflater.from(getContext()).inflate(R.layout.ex_list_adapter, parent, false);
 	       }
 	       // Lookup view for data population
-	       TextView AlimName = (TextView) convertView.findViewById(R.id.AlimName);
-	       TextView CalorieAlim = (TextView) convertView.findViewById(R.id.CalorieAlim);
+	       TextView ExName = (TextView) convertView.findViewById(R.id.ExName);
+	       TextView CalorieEx = (TextView) convertView.findViewById(R.id.CalorieEx);
 	       Button b =(Button)convertView.findViewById(R.id.addAlButton);
 	       // Populate the data into the template view using the data object
-	       AlimName.setText(a.getName());
-	       CalorieAlim.setText(a.getCalString()+" calories");
+	       ExName.setText(e.getName());
+	       CalorieEx.setText(e.calorieUsed()+" calories");
 	       // Return the completed view to render on screen
 	       return convertView;
 	   }

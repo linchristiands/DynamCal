@@ -39,13 +39,15 @@
         android:text="Finish"
     />
        
-      </LinearLayout>     
- 
- <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtListeExercice"
-        android:maxLines = "100"
-		android:scrollbars = "vertical"
-       />       
-
+      </LinearLayout>           
+    <ListView android:id="@+id/ExerciseList"
+           android:layout_width="fill_parent"
+           android:layout_height="0px"
+           android:layout_weight="1"
+  	  />  
+  	  <ListView android:id="@+id/ExerciseListSearch"
+           android:layout_width="fill_parent"
+           android:layout_height="0px"
+           android:layout_weight="1"
+  	  />     
 </LinearLayout>

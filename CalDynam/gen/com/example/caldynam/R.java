@@ -26,17 +26,27 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int AlimName=0x7f080010;
-        public static final int AlimentList=0x7f08000a;
-        public static final int CalorieAlim=0x7f080011;
-        public static final int action_settings=0x7f080018;
-        public static final int btnAddUser=0x7f080016;
-        public static final int btnAlimentation=0x7f080013;
+        public static final int AlimName=0x7f080011;
+        public static final int AlimSearchName=0x7f080013;
+        public static final int AlimentList=0x7f080009;
+        public static final int AlimentSearchList=0x7f08000a;
+        public static final int CalorieAlim=0x7f080012;
+        public static final int CalorieEx=0x7f080016;
+        public static final int ExName=0x7f080015;
+        public static final int ExSearchName=0x7f080017;
+        public static final int ExerciseList=0x7f08000e;
+        public static final int ExerciseListSearch=0x7f08000f;
+        public static final int TimeEx=0x7f080018;
+        public static final int action_settings=0x7f080021;
+        public static final int addAlButton=0x7f080014;
+        public static final int addExButton=0x7f08001a;
+        public static final int btnAddUser=0x7f08001f;
+        public static final int btnAlimentation=0x7f08001c;
         public static final int btnCancelUser=0x7f080005;
         public static final int btnConfirmUser=0x7f080004;
-        public static final int btnConseils=0x7f080015;
-        public static final int btnDate=0x7f080012;
-        public static final int btnExercice=0x7f080014;
+        public static final int btnConseils=0x7f08001e;
+        public static final int btnDate=0x7f08001b;
+        public static final int btnExercice=0x7f08001d;
         public static final int btnRechercheAliment=0x7f080007;
         public static final int btnRechercheExercice=0x7f08000c;
         public static final int btnTerminerAliment=0x7f080008;
@@ -47,10 +57,9 @@ public final class R {
         public static final int edtUserHeight=0x7f080003;
         public static final int edtUserName=0x7f080000;
         public static final int edtUserWeight=0x7f080002;
-        public static final int lstUser=0x7f080017;
-        public static final int pager=0x7f08000f;
-        public static final int txtListeAliment=0x7f080009;
-        public static final int txtListeExercice=0x7f08000e;
+        public static final int exerciseTimeEdit=0x7f080019;
+        public static final int lstUser=0x7f080020;
+        public static final int pager=0x7f080010;
     }
     public static final class layout {
         public static final int activity_adduser=0x7f030000;
@@ -60,10 +69,13 @@ public final class R {
         public static final int activity_main=0x7f030004;
         public static final int activity_modifuser=0x7f030005;
         public static final int alim_list_adapter=0x7f030006;
-        public static final int fragment_graph=0x7f030007;
-        public static final int fragment_menu=0x7f030008;
-        public static final int fragment_user=0x7f030009;
-        public static final int listitem=0x7f03000a;
+        public static final int alim_search_list_adapter=0x7f030007;
+        public static final int ex_list_adapter=0x7f030008;
+        public static final int ex_search_list_adapter=0x7f030009;
+        public static final int fragment_graph=0x7f03000a;
+        public static final int fragment_menu=0x7f03000b;
+        public static final int fragment_user=0x7f03000c;
+        public static final int listitem=0x7f03000d;
     }
     public static final class menu {
         public static final int main=0x7f070000;
