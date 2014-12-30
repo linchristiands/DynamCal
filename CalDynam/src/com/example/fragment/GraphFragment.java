@@ -121,7 +121,7 @@ public class GraphFragment extends Fragment {
 			dataPoints = new DataPoint[list.size()];
 			for(int j=0; j< list.size(); j++){
 				dataPoints[j]= new DataPoint(j, list.get(j).getTotal());
-				dates.add(list.get(j).getDay()+"/"+list.get(j).getMonth()+"/"+list.get(j).getYear());
+				dates.add(list.get(j).getDay()+"/"+(list.get(j).getMonth()+1)+"/"+list.get(j).getYear());
 			}
 		}
 		
