@@ -242,7 +242,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				String AlimCapitalized= userEntry.substring(0,1).toUpperCase()+userEntry.substring(1);
 				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
 				Globalvar.userListAliment.add(a);
-				entryAliment+=a.getName()+"-"+a.getCalString();
+				entryAliment+=a.getName()+"#"+a.getCalString();
 				totalIN+=calorie;
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);

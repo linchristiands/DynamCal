@@ -3,16 +3,22 @@ package com.example.fragment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 import com.example.caldynam.EntryAliment;
 import com.example.caldynam.R;
 import com.example.caldynam.User;
 import com.example.caldynam.MainActivity.Globalvar;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.PointsGraphSeries;
+import com.jjoe64.graphview.series.Series;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,6 +26,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class GraphFragment extends Fragment {
 	
@@ -45,12 +52,15 @@ public class GraphFragment extends Fragment {
         
         graph.addSeries(series2);*/
         graph.setTitle("in/out Graph");
+        graph.getLegendRenderer().setMargin(0);  
         if(User.currentUser!=null && Globalvar.entryAlimList.size()>0)
         	setGraphData();
         return rootView;
     }
 	
 	private void setGraphData(){
+		
+		final ArrayList<String> dates = new ArrayList<String>();
 		ArrayList<EntryAliment> list = new ArrayList<EntryAliment>();
 		//keep entries of current user
 		for(EntryAliment e : Globalvar.entryAlimList){
@@ -104,18 +114,28 @@ public class GraphFragment extends Fragment {
 		dataPoints = new DataPoint[7];
 		for(int i=list.size()-7,j=0;i<list.size();i++,j++){
 			dataPoints[j] = new DataPoint(j,list.get(i).getTotal());
+			dates.add(list.get(i).getDay()+"/"+list.get(i).getMonth()+"/"+list.get(i).getYear());
 		}
 		}
 		else if(list.size()>0){ //if less than 7 entries
 			dataPoints = new DataPoint[list.size()];
 			for(int j=0; j< list.size(); j++){
 				dataPoints[j]= new DataPoint(j, list.get(j).getTotal());
+				dates.add(list.get(j).getDay()+"/"+list.get(j).getMonth()+"/"+list.get(j).getYear());
 			}
 		}
 		
 		series = new LineGraphSeries<DataPoint>(dataPoints);
 		series.setColor(Color.RED);
         series.setThickness(2);
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(3);
+        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(getActivity(), dates.get((int) dataPoint.getX())+" - " + dataPoint.getY()+" cal", Toast.LENGTH_SHORT).show();
+            }
+        });
         graph.addSeries(series);
 	}
 }

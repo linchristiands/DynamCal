@@ -111,7 +111,7 @@ public class AlimSearchListAdapter extends ArrayAdapter<String>{
 					String fname=food.getString("item_name");
 					String AlimCapitalized= fname.substring(0,1).toUpperCase()+fname.substring(1);
 					Aliment a = new Aliment(AlimCapitalized,(float) calorie);
-					entry=a.getName()+"-"+a.getCalString();
+					entry=a.getName()+"#"+a.getCalString();
 					entry+=":";
 					Globalvar.userListAliment.add(a);
 					Globalvar.AlimAct.setViewWithData(calorie,entry);
