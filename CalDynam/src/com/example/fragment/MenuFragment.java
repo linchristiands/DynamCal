@@ -131,7 +131,8 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    		lst.add(new Aliment(parts[i]));
 	    	}
 	    	EntryAliment e = new EntryAliment(User.currentUser.getKey(), totalIN, day, month, year, lst);
-	    	Globalvar.entryAlimList.add(e);
+	    	if(!checkDateExist(e))
+	    		Globalvar.entryAlimList.add(e);
 	    	}        
 	    	}
 	    }
@@ -146,11 +147,37 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    	for(int i=0;i<parts.length;i++){
 	    		lst.add(new Exercise(parts[i]));
 	    	}
+	    	
 	    	EntryExercice e = new EntryExercice(User.currentUser.getKey(), totalIN, day, month, year, lst);
-	    	Globalvar.entryExoList.add(e);
+	    	if(!checkDateExist(e))
+	    		Globalvar.entryExoList.add(e);
 	    	}
 	    	}
 	    }
+	}
+
+	
+	private boolean checkDateExist(EntryAliment e) {
+		for(EntryAliment ent : Globalvar.entryAlimList){
+			if(ent.getUsername().equals(e.getUsername())){
+				if(ent.getDay() == e.getDay() && ent.getMonth()==e.getMonth() && ent.getYear() == e.getYear()){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+
+	private boolean checkDateExist(EntryExercice e) {
+		for(EntryExercice ent : Globalvar.entryExoList){
+			if(ent.getUsername().equals(e.getUsername())){
+				if(ent.getDay() == e.getDay() && ent.getMonth()==e.getMonth() && ent.getYear() == e.getYear()){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
     
    
