@@ -27,6 +27,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GraphFragment extends Fragment {
@@ -34,6 +35,7 @@ public class GraphFragment extends Fragment {
 	
 	GraphView graph;
 	LineGraphSeries<DataPoint> series, series2,series3;
+	TextView txtDataAlim, txtDataExo;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +43,8 @@ public class GraphFragment extends Fragment {
  
         View rootView = inflater.inflate(R.layout.fragment_graph, container, false);
         graph = (GraphView) rootView.findViewById(R.id.graph);
-
+        txtDataAlim = (TextView) rootView.findViewById(R.id.txtDataAlim);
+        txtDataExo = (TextView) rootView.findViewById(R.id.txtDataExo);
         if(User.currentUser!=null && Globalvar.entryAlimList.size()>0){
         	setGraphAlimData();
         }
@@ -131,7 +134,7 @@ public class GraphFragment extends Fragment {
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
-                Toast.makeText(getActivity(), dates.get((int) dataPoint.getX())+" - " + dataPoint.getY()+" cal", Toast.LENGTH_SHORT).show();
+                txtDataAlim.setText("Food "+dates.get((int) dataPoint.getX())+" - " + dataPoint.getY()+" cal");
             }
         });
         graph.addSeries(series);
@@ -214,7 +217,7 @@ private void setGraphExoData(){
         series2.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
-                Toast.makeText(getActivity(), dates.get((int) dataPoint.getX())+" - " + dataPoint.getY()+" cal", Toast.LENGTH_SHORT).show();
+            	txtDataExo.setText("Exercise "+dates.get((int) dataPoint.getX())+" - " + dataPoint.getY()+" cal");
             }
         });
         graph.addSeries(series2);
