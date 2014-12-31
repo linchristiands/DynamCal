@@ -33,7 +33,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	private float totalIN, totalOUT;
 	private Button btnAlimentation, btnExercice, btnConseils, btnDate;
 	private Intent i;
-	private int day,month,year;
+	public static int day,month,year;
 	private String entryAliment, entryExercise;
 	
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

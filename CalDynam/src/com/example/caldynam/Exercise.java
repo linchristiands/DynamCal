@@ -11,7 +11,7 @@ public class Exercise {
 		exerciseName=nom;
 	}
 	public Exercise(String str) {
-		String[] parts = str.split("-");
+		String[] parts = str.split("#");
 		exerciseName = parts[0];
 		calorieUsed = Float.parseFloat(parts[1]);
 		
@@ -46,6 +46,6 @@ public class Exercise {
 	}
 	@Override
 	public String toString() {
-		return exerciseName+"-"+calorieUsed;
+		return exerciseName+"#"+calorieUsed;
 	}
 }

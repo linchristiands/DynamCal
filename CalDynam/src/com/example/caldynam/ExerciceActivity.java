@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import com.example.caldynam.MainActivity.Globalvar;
 import com.example.caldynam.R;
+import com.example.fragment.MenuFragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -40,9 +41,11 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	    btnTerminerExercice = (Button)findViewById(R.id.btnTerminerExercice);
 	    edtRechercheExercice = (EditText) findViewById(R.id.edtRechercheExercice);
 	    totalOUT = 0;
+	    entryEx="";
 	    foundEx= new ArrayList<Exercise>();
 	    btnRechercheExercice.setOnClickListener(this);
 	    btnTerminerExercice.setOnClickListener(this);
+	    checkUserExList();
 	    searchList=(ListView)findViewById(R.id.ExerciseListSearch);
 	    exList=(ListView)findViewById(R.id.ExerciseList);
 	    exSearch=new ExSearchListAdapter(this,foundEx);
@@ -52,6 +55,16 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	    setAdapterView();
 	  }
 	
+	private void checkUserExList()
+	{
+		for(EntryExercice ee : Globalvar.entryExoList)
+		{
+			if((ee.getUsername().equals(User.currentUser.getKey()))&&(MenuFragment.day==ee.getDay()&&MenuFragment.month==ee.getMonth()&&MenuFragment.year==ee.getYear()))
+			{
+				Globalvar.userListExercise=ee.getListe();
+			}
+		}
+	}
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -95,7 +108,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	
 	public void setEntry(String txt)
 	{
-		entryEx=txt;
+		entryEx+=txt;
 	}
 	public void setTotalOut(float t)
 	{

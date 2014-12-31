@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import com.example.caldynam.R;
 import com.example.caldynam.MainActivity.Globalvar;
+import com.example.fragment.MenuFragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -64,6 +65,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    listViewSearchAliment=(ListView)findViewById(R.id.AlimentSearchList);
 	    totalIN=0;
 	    entryAliment="";
+	    checkUserAlimList();
 	    foundItem = new ArrayList<String>();
 	    adapter = new AlimListAdapter(this,Globalvar.userListAliment);
 	    searchAdapter = new AlimSearchListAdapter(this,foundItem);
@@ -73,6 +75,17 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    registerForContextMenu(listViewAliment);
 	  }
 
+	private void checkUserAlimList()
+	{
+		for(EntryAliment ea : Globalvar.entryAlimList)
+		{
+			if((ea.getUsername().equals(User.currentUser.getKey()))&&(MenuFragment.day==ea.getDay()&&MenuFragment.month==ea.getMonth()&&MenuFragment.year==ea.getYear()))
+			{
+				Globalvar.userListAliment=ea.getListe();
+			}
+		}
+	}
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
