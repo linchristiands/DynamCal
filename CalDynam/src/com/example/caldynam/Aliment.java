@@ -18,7 +18,7 @@ public class Aliment {
 		nom=al.getString("item_name");
 	}
 	public Aliment(String str) {
-		String[] parts = str.split("-");
+		String[] parts = str.split("#");
 		nom = parts[0];
 		nbCalorie = Float.parseFloat(parts[1]);
 	}
@@ -38,7 +38,7 @@ public class Aliment {
 	
 	@Override
 	public String toString() {
-		return nom+"-"+nbCalorie;
+		return nom+"#"+nbCalorie;
 	}
 
 }
