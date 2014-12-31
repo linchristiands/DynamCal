@@ -6,7 +6,7 @@ public class EntryAliment {
 
 	private String username; //format: nom prenom
 	private float total;
-	private ArrayList<Aliment> liste;
+	private ArrayList<Aliment> liste=new ArrayList<Aliment>();
 	private int day, month, year;
 
 	public EntryAliment() {
@@ -23,6 +23,7 @@ public class EntryAliment {
 	}
 	
 	public EntryAliment(String str){
+		
 		String[] parts = str.split(";");
 		username = parts[0];
 		total = Float.parseFloat(parts[1]);

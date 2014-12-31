@@ -6,7 +6,7 @@ public class EntryExercice {
 
 	private String username; //format: nom prenom
 	private float total;
-	private ArrayList<Exercise> liste;
+	private ArrayList<Exercise> liste=new ArrayList<Exercise>();
 	private int day, month, year;
 
 	public EntryExercice() {

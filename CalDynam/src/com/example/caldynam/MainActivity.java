@@ -94,12 +94,14 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		// TODO Auto-generated method stub
 
 	}
-	
-	public void OnDestroy()
+	@Override
+	protected void onDestroy()
 	{
+		
 		saveExList();
 		saveEntryExoList();
 		saveEntryAlimList();
+		super.onDestroy();
 	}
 	
 	public void getExList()
@@ -130,7 +132,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	{
 		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
 		String str = mPrefs.getString("EntryExoList", null);
-		if(str != null){
+		if(!str.equals("")){
 			String[] parts = str.split("/");
 			for(int i=0;i<parts.length;i++){
 				Globalvar.entryExoList.add(new EntryExercice(parts[i]));
@@ -151,7 +153,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	{
 		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
 		String str = mPrefs.getString("EntryAlimList", null);
-		if(str != null){
+		if(!str.equals("")){
 			String[] parts = str.split("/");
 			for(int i=0;i<parts.length;i++){
 				Globalvar.entryAlimList.add(new EntryAliment(parts[i]));

@@ -65,7 +65,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 		case R.id.btnTerminerExercice:
 			Intent i = new Intent();
 			i.putExtra("totalOUT",totalOUT);
-			i.putExtra("entryEx",entryEx);
+			i.putExtra("entryExercise",entryEx);
 			setResult(RESULT_OK,i);
 			finish();
 			break;
