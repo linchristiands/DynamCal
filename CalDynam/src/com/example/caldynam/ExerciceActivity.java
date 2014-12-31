@@ -57,6 +57,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	
 	private void checkUserExList()
 	{
+		Globalvar.userListExercise.clear();
 		for(EntryExercice ee : Globalvar.entryExoList)
 		{
 			if((ee.getUsername().equals(User.currentUser.getKey()))&&(MenuFragment.day==ee.getDay()&&MenuFragment.month==ee.getMonth()&&MenuFragment.year==ee.getYear()))
@@ -76,6 +77,8 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.btnTerminerExercice:
+			totalOUT=Globalvar.sumCalEx();
+			entryEx=Globalvar.sumStringUserListEx();
 			Intent i = new Intent();
 			i.putExtra("totalOUT",totalOUT);
 			i.putExtra("entryExercise",entryEx);
@@ -106,14 +109,6 @@ public class ExerciceActivity extends Activity implements OnClickListener{
                            
       }  
 	
-	public void setEntry(String txt)
-	{
-		entryEx+=txt;
-	}
-	public void setTotalOut(float t)
-	{
-		totalOUT=t;
-	}
 	public void setAdapterView()
 	{
 		exList.setAdapter(exerciseList);

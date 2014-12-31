@@ -69,10 +69,6 @@ public class ExSearchListAdapter extends ArrayAdapter<Exercise>{
 		            	 ne.setCal(calorie);
 		            	 Globalvar.userListExercise.add(ne);
 		            	 Globalvar.ExAct.setAdapterView();
-		            	 out=ne.calorieUsed();
-		            	 String entryExpt=ne.getName()+"#"+calorie.toString()+":";
-		            	 Globalvar.ExAct.setEntry(entryExpt);
-		            	 Globalvar.ExAct.setTotalOut(out);
 	            	 }
 	            	 else
 	            		 Toast.makeText(getContext(),"Please enter a duration" , Toast.LENGTH_SHORT).show();

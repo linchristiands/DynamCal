@@ -191,6 +191,43 @@ public class MainActivity extends FragmentActivity implements TabListener {
 			userListAliment=a;
 		}
 		
+		public static String sumStringUserListAlim()
+		{
+			String s="";
+			for(Aliment a : Globalvar.userListAliment)
+			{
+				s+=a.getName()+"#"+a.getCalString()+":";
+			}
+			return s;
+		}
+		public static String sumStringUserListEx()
+		{
+			String s="";
+			for(Exercise e : Globalvar.userListExercise)
+			{
+				s+= e.getName()+"#"+e.calorieUsed()+":";
+			}
+			return s;
+		}
+		
+		public static float sumCalAlim()
+		{
+			float c=0;
+			for(Aliment a : Globalvar.userListAliment)
+			{
+				c+=a.getCal();
+			}
+			return c;
+		}
+		public static float sumCalEx()
+		{
+			float c=0;
+			for(Exercise e : Globalvar.userListExercise)
+			{
+				c+=e.calorieUsed();
+			}
+			return c;
+		}
 		public static String toStringEntryAlim()
 		{
 			if(entryAlimList != null){

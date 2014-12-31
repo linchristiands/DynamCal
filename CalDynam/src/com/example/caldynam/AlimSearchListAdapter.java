@@ -114,7 +114,6 @@ public class AlimSearchListAdapter extends ArrayAdapter<String>{
 					entry=a.getName()+"#"+a.getCalString();
 					entry+=":";
 					Globalvar.userListAliment.add(a);
-					Globalvar.AlimAct.setViewWithData(calorie,entry);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

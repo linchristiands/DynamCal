@@ -101,6 +101,8 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			
 		case R.id.btnTerminerAliment:
 		
+			totalIN=Globalvar.sumCalAlim();
+			entryAliment=Globalvar.sumStringUserListAlim();
 			Intent i = new Intent();
 			i.putExtra("totalIN",totalIN);
 			i.putExtra("entryAliment" , entryAliment);
@@ -110,12 +112,6 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 		}
 	}
 	
-	public void setViewWithData(double cal,String txt)
-	{
-		listViewAliment.setAdapter(adapter);
-		totalIN+=cal;
-		entryAliment+=txt;
-	}
 	public void RefreshListView()
 	{
 		listViewAliment.setAdapter(adapter);
