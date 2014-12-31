@@ -44,12 +44,8 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	
 	private Button btnRechercheExercice, btnTerminerExercice;
 	private EditText edtRechercheExercice;
-	private TextView txtListeExercice;
 	private float totalOUT;
-	private String[] split;
-	private String signature="&oauth_signature=";
-	private String result;
-	private String parameters;
+	private String entryEx;
 	private ArrayList<Exercise> foundEx;
 	private ExSearchListAdapter exSearch;
 	private ExerciseListAdapter exerciseList;
@@ -72,7 +68,9 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	    exList=(ListView)findViewById(R.id.ExerciseList);
 	    exSearch=new ExSearchListAdapter(this,foundEx);
 	    exerciseList= new ExerciseListAdapter(this,Globalvar.userListExercise);
+	    exList.setItemsCanFocus(true);
 	    registerForContextMenu(exList);
+	    setAdapterView();
 	  }
 	
 	@Override
@@ -88,6 +86,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 		case R.id.btnTerminerExercice:
 			Intent i = new Intent();
 			i.putExtra("totalOUT",totalOUT);
+			i.putExtra("entryEx",entryEx);
 			setResult(RESULT_OK,i);
 			finish();
 			break;
@@ -114,6 +113,15 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 		return true;        
                            
       }  
+	
+	public void setEntry(String txt)
+	{
+		entryEx=txt;
+	}
+	public void setTotalOut(float t)
+	{
+		totalOUT=t;
+	}
 	public void setAdapterView()
 	{
 		exList.setAdapter(exerciseList);

@@ -56,7 +56,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
 	    if(!users[info.position].equals("")){
 	    menu.setHeaderTitle(users[info.position]);
-	    String[] menuItems = {"select","modify","delete"};
+	    String[] menuItems = {"Select","Modify","Delete"};
 	    for (int i = 0; i<menuItems.length; i++) {
 	      menu.add(Menu.NONE, i, i, menuItems[i]);
 	    }
