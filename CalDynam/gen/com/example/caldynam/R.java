@@ -37,16 +37,16 @@ public final class R {
         public static final int ExerciseList=0x7f08000e;
         public static final int ExerciseListSearch=0x7f08000f;
         public static final int TimeEx=0x7f080018;
-        public static final int action_settings=0x7f080022;
+        public static final int action_settings=0x7f080024;
         public static final int addAlButton=0x7f080014;
         public static final int addExButton=0x7f08001a;
-        public static final int btnAddUser=0x7f080020;
-        public static final int btnAlimentation=0x7f08001d;
+        public static final int btnAddUser=0x7f080022;
+        public static final int btnAlimentation=0x7f08001f;
         public static final int btnCancelUser=0x7f080005;
         public static final int btnConfirmUser=0x7f080004;
-        public static final int btnConseils=0x7f08001f;
-        public static final int btnDate=0x7f08001c;
-        public static final int btnExercice=0x7f08001e;
+        public static final int btnConseils=0x7f080021;
+        public static final int btnDate=0x7f08001e;
+        public static final int btnExercice=0x7f080020;
         public static final int btnRechercheAliment=0x7f080007;
         public static final int btnRechercheExercice=0x7f08000c;
         public static final int btnTerminerAliment=0x7f080008;
@@ -59,8 +59,10 @@ public final class R {
         public static final int edtUserWeight=0x7f080002;
         public static final int exerciseTimeEdit=0x7f080019;
         public static final int graph=0x7f08001b;
-        public static final int lstUser=0x7f080021;
+        public static final int lstUser=0x7f080023;
         public static final int pager=0x7f080010;
+        public static final int txtDataAlim=0x7f08001c;
+        public static final int txtDataExo=0x7f08001d;
     }
     public static final class layout {
         public static final int activity_adduser=0x7f030000;
