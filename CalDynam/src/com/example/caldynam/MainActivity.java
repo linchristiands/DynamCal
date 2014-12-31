@@ -131,7 +131,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	public void getEntryExoList()
 	{
 		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
-		String str = mPrefs.getString("EntryExoList", null);
+		String str = mPrefs.getString("EntryExoList", "");
 		if(!str.equals("")){
 			String[] parts = str.split("/");
 			for(int i=0;i<parts.length;i++){
@@ -152,7 +152,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	public void getEntryAlimList()
 	{
 		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);
-		String str = mPrefs.getString("EntryAlimList", null);
+		String str = mPrefs.getString("EntryAlimList", "");
 		if(!str.equals("")){
 			String[] parts = str.split("/");
 			for(int i=0;i<parts.length;i++){
