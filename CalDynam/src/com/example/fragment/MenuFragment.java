@@ -205,7 +205,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 		}
 		for(EntryAliment e : temp)
 		{
-			Globalvar.entryExoList.remove(e);
+			Globalvar.entryAlimList.remove(e);
 		}
 	}
 	

@@ -124,7 +124,7 @@ public class GraphFragment extends Fragment {
 				dates.add(list.get(j).getDay()+"/"+(list.get(j).getMonth()+1)+"/"+list.get(j).getYear());
 			}
 		}
-		
+		if(dataPoints !=null){
 		series = new LineGraphSeries<DataPoint>(dataPoints);
 		series.setColor(Color.RED);
 		series.setTitle("food");
@@ -138,6 +138,7 @@ public class GraphFragment extends Fragment {
             }
         });
         graph.addSeries(series);
+		}
 	}
 	
 private void setGraphExoData(){
@@ -208,6 +209,7 @@ private void setGraphExoData(){
 			}
 		}
 		
+		if(dataPoints != null){
 		series2 = new LineGraphSeries<DataPoint>(dataPoints);
 		series2.setColor(Color.BLACK);
 		series2.setTitle("exercise");
@@ -221,5 +223,6 @@ private void setGraphExoData(){
             }
         });
         graph.addSeries(series2);
+		}
 	}
 }
