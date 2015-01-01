@@ -133,6 +133,11 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    	EntryAliment e = new EntryAliment(User.currentUser.getKey(), totalIN, day, month, year, lst);
 	    	if(!checkDateExist(e))
 	    		Globalvar.entryAlimList.add(e);
+	    	else
+	    	{
+	    		removeIfExistAlim();
+	    		Globalvar.entryAlimList.add(e);
+	    	}
 	    	}        
 	    	}
 	    }
@@ -148,14 +153,61 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	    		lst.add(new Exercise(parts[i]));
 	    	}
 	    	
-	    	EntryExercice e = new EntryExercice(User.currentUser.getKey(), totalIN, day, month, year, lst);
-	    	if(!checkDateExist(e))
+	    	EntryExercice e = new EntryExercice(User.currentUser.getKey(), totalOUT, day, month, year, lst);
+	    	if(!checkDateExist(e)){
 	    		Globalvar.entryExoList.add(e);
+	    	}
+	    	else
+	    	{
+	    		removeIfExistEx();
+	    		Globalvar.entryExoList.add(e);
+	    	}
 	    	}
 	    	}
 	    }
 	}
 
+	private void removeIfExistEx()
+	{
+		ArrayList<EntryExercice> temp= new ArrayList<EntryExercice>();
+		for(EntryExercice e : Globalvar.entryExoList)
+		{
+			int d=e.getDay();
+			int m=e.getMonth();
+			int y=e.getYear();
+			String uname= e.getUsername();
+			String currentUserKey=User.currentUser.getKey();
+			if(d==day&&m==month&&y==year&&(uname.equals(currentUserKey)))
+			{
+				temp.add(e);
+			}
+		}
+		for(EntryExercice e : temp)
+		{
+			Globalvar.entryExoList.remove(e);
+		}
+	}
+	
+	private void removeIfExistAlim()
+	{
+		ArrayList<EntryAliment> temp= new ArrayList<EntryAliment>();
+		for(EntryAliment e : Globalvar.entryAlimList)
+		{
+			int d=e.getDay();
+			int m=e.getMonth();
+			int y=e.getYear();
+			String uname= e.getUsername();
+			String currentUserKey=User.currentUser.getKey();
+			if(d==day&&m==month&&y==year&&(uname.equals(currentUserKey)))
+			{
+				temp.add(e);
+			}
+		}
+		for(EntryAliment e : temp)
+		{
+			Globalvar.entryExoList.remove(e);
+		}
+	}
 	
 	private boolean checkDateExist(EntryAliment e) {
 		for(EntryAliment ent : Globalvar.entryAlimList){

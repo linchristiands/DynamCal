@@ -88,6 +88,9 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 		}
 	}
 	@Override
+	public void onBackPressed() {
+	}
+	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
 	    super.onCreateContextMenu(menu, v, menuInfo);
 

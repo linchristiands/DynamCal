@@ -1,43 +1,26 @@
 package com.example.caldynam;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.example.caldynam.MainActivity.Globalvar;
-
 import android.content.Context;
-import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.caldynam.MainActivity.Globalvar;
+
 public class ExSearchListAdapter extends ArrayAdapter<Exercise>{
 
 	private EditText editTime;
-	private float out;
-	private String qtyString;
+	private String qtyString="";
 	private float quantityTime;
 	public ExSearchListAdapter(Context context, ArrayList<Exercise> alim) 
 	{

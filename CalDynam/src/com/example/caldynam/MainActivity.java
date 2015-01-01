@@ -97,7 +97,6 @@ public class MainActivity extends FragmentActivity implements TabListener {
 	@Override
 	protected void onDestroy()
 	{
-		
 		saveExList();
 		saveEntryExoList();
 		saveEntryAlimList();
