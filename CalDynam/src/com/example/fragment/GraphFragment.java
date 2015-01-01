@@ -45,6 +45,9 @@ public class GraphFragment extends Fragment {
         graph = (GraphView) rootView.findViewById(R.id.graph);
         txtDataAlim = (TextView) rootView.findViewById(R.id.txtDataAlim);
         txtDataExo = (TextView) rootView.findViewById(R.id.txtDataExo);
+        //graph.getViewport().setXAxisBoundsManual(true);
+        //graph.getViewport().setMinX(0);
+        //graph.getViewport().setMaxX(7);
         if(User.currentUser!=null && Globalvar.entryAlimList.size()>0){
         	setGraphAlimData();
         }
@@ -53,7 +56,8 @@ public class GraphFragment extends Fragment {
         	setGraphExoData();
         }
         graph.setTitle("Calorie Graph");
-        graph.getLegendRenderer().setVisible(true);        
+        graph.getLegendRenderer().setVisible(true);      
+      
         return rootView;
     }
 	
