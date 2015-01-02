@@ -40,7 +40,7 @@ public class ExSearchListAdapter extends ArrayAdapter<Exercise>{
 	       TextView ExName = (TextView) convertView.findViewById(R.id.ExSearchName);
 	       Button b = (Button)convertView.findViewById(R.id.addExButton);
 	       editTime.setTag(position);
-	       editTime.addTextChangedListener(new MyTextWatcher(convertView));
+	       editTime.addTextChangedListener(new MyTextWatcher());
 	       b.setOnClickListener(new View.OnClickListener() {
 	             public void onClick(View v) {
 	            	 if(!qtyString.equals("")){
@@ -65,9 +65,7 @@ public class ExSearchListAdapter extends ArrayAdapter<Exercise>{
 	   }
 	 private class MyTextWatcher implements TextWatcher{
 		 
-		  private View view;
-		  private MyTextWatcher(View view) {
-		   this.view = view;
+		 private MyTextWatcher() {
 		  }
 		 
 		  public void beforeTextChanged(CharSequence s, int start, int count, int after) {

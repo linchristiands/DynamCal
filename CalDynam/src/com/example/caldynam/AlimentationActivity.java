@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,10 +13,6 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.example.caldynam.R;
-import com.example.caldynam.MainActivity.Globalvar;
-import com.example.fragment.MenuFragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -32,21 +27,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.caldynam.MainActivity.Globalvar;
+import com.example.fragment.MenuFragment;
 
 public class AlimentationActivity extends Activity implements OnClickListener {
 	
 	private Button btnRechercheAliment, btnTerminerAliment;
 	private EditText edtRechercheAliment;
-	private TextView txtListeAliment;
 	private ListView listViewAliment;
 	private ListView listViewSearchAliment;
 	private float totalIN;
@@ -79,6 +72,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 
 	private void checkUserAlimList()
 	{
+		Globalvar.userListAliment.clear();
 		for(EntryAliment ea : Globalvar.entryAlimList)
 		{
 			if((ea.getUsername().equals(User.currentUser.getKey()))&&(MenuFragment.day==ea.getDay()&&MenuFragment.month==ea.getMonth()&&MenuFragment.year==ea.getYear()))
@@ -153,13 +147,10 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	
 	class RetrieveID extends AsyncTask<String, Void, String> {
 
-	    private Exception exception;
-
 	    protected String doInBackground(String... urls) {
 	    	DefaultHttpClient   httpclient = new DefaultHttpClient(new BasicHttpParams());
 			String url="https://api.nutritionix.com/v1_1/search/"+edtRechercheAliment.getText()+"?appId=bb655221&appKey=54235ea3948c6bbb61ff9a32701bbae7";
 			HttpGet httpget = new HttpGet(url);
-			// Depends on your web service
 
 			InputStream inputStream = null;
 			String result = null;
@@ -168,7 +159,6 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			    HttpEntity entity = response.getEntity();
 
 			    inputStream = entity.getContent();
-			    // json is UTF-8 by default
 			    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
 			    StringBuilder sb = new StringBuilder();
 
@@ -191,14 +181,10 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 	    }
 
 	    protected void onPostExecute(String res) {
-	        // TODO: check this.exception 
-	        // TODO: do something with the feed
 	    	  try {
 	    		
 				JSONObject food = new JSONObject(res);
 				JSONArray jArray = food.getJSONArray("hits");
-				JSONObject one=jArray.getJSONObject(0);
-				JSONObject foodFields = one.getJSONObject("fields");
 				for(int i=0;i<jArray.length();i++)
 				{
 					JSONObject item =jArray.getJSONObject(i);
@@ -208,9 +194,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				listViewSearchAliment.setAdapter(searchAdapter);
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
-				//new RetrieveCal().execute(foodFields.getString("item_id"));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    }

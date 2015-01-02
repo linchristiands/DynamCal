@@ -13,19 +13,16 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.caldynam.MainActivity.Globalvar;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.caldynam.MainActivity.Globalvar;
 
 public class AlimSearchListAdapter extends ArrayAdapter<String>{
 	
@@ -66,7 +63,6 @@ public class AlimSearchListAdapter extends ArrayAdapter<String>{
 	 
 		public class RetrieveCal extends AsyncTask<String, Void, String> {
 
-		    private Exception exception;
 
 		    protected String doInBackground(String... urls) {
 		    	DefaultHttpClient   httpclient = new DefaultHttpClient(new BasicHttpParams());

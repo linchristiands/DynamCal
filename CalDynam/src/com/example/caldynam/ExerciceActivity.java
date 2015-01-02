@@ -68,7 +68,6 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	}
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.btnRechercheExercice:
 			//idem que pour totalIN mais pour le totalOUT

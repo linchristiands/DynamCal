@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class AlimListAdapter extends ArrayAdapter<Aliment>{
@@ -28,7 +27,6 @@ public class AlimListAdapter extends ArrayAdapter<Aliment>{
 	       // Lookup view for data population
 	       TextView AlimName = (TextView) convertView.findViewById(R.id.AlimName);
 	       TextView CalorieAlim = (TextView) convertView.findViewById(R.id.CalorieAlim);
-	       Button b =(Button)convertView.findViewById(R.id.addAlButton);
 	       // Populate the data into the template view using the data object
 	       AlimName.setText(a.getName());
 	       CalorieAlim.setText(a.getCalString()+" calories");

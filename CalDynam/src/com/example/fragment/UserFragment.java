@@ -3,15 +3,6 @@ package com.example.fragment;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.example.caldynam.AddUserActivity;
-import com.example.caldynam.AlimentationActivity;
-import com.example.caldynam.EntryAliment;
-import com.example.caldynam.EntryExercice;
-import com.example.caldynam.ModifUserActivity;
-import com.example.caldynam.R;
-import com.example.caldynam.User;
-import com.example.caldynam.MainActivity.Globalvar;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,17 +10,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MenuItem;
-import android.view.View.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import com.example.caldynam.AddUserActivity;
+import com.example.caldynam.EntryAliment;
+import com.example.caldynam.EntryExercice;
+import com.example.caldynam.MainActivity.Globalvar;
+import com.example.caldynam.ModifUserActivity;
+import com.example.caldynam.R;
+import com.example.caldynam.User;
 
 public class UserFragment extends Fragment implements OnClickListener {
 

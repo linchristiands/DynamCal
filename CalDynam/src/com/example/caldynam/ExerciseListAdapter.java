@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class ExerciseListAdapter extends ArrayAdapter<Exercise>{
@@ -28,7 +27,6 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise>{
 	       // Lookup view for data population
 	       TextView ExName = (TextView) convertView.findViewById(R.id.ExName);
 	       TextView CalorieEx = (TextView) convertView.findViewById(R.id.CalorieEx);
-	       Button b =(Button)convertView.findViewById(R.id.addAlButton);
 	       // Populate the data into the template view using the data object
 	       ExName.setText(e.getName());
 	       CalorieEx.setText(e.calorieUsed()+" calories");

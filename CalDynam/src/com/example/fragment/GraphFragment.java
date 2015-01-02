@@ -3,23 +3,6 @@ package com.example.fragment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
-
-import com.example.caldynam.EntryAliment;
-import com.example.caldynam.EntryExercice;
-import com.example.caldynam.R;
-import com.example.caldynam.User;
-import com.example.caldynam.MainActivity.Globalvar;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
-import com.jjoe64.graphview.helper.StaticLabelsFormatter;
-import com.jjoe64.graphview.series.BarGraphSeries;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.DataPointInterface;
-import com.jjoe64.graphview.series.LineGraphSeries;
-import com.jjoe64.graphview.series.OnDataPointTapListener;
-import com.jjoe64.graphview.series.PointsGraphSeries;
-import com.jjoe64.graphview.series.Series;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,7 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.caldynam.EntryAliment;
+import com.example.caldynam.EntryExercice;
+import com.example.caldynam.MainActivity.Globalvar;
+import com.example.caldynam.R;
+import com.example.caldynam.User;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
+import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 public class GraphFragment extends Fragment {
 	

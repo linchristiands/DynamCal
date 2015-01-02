@@ -35,7 +35,6 @@ public class AddUserActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.btnConfirmUser:
 			//écriture fichier utilisateur
@@ -65,7 +64,6 @@ public class AddUserActivity extends Activity implements OnClickListener{
 	private boolean checkExist(String username) {
 		SharedPreferences sharedPref = this.getSharedPreferences("CalDynamUsers", Context.MODE_PRIVATE);
 		Map<String,?> keys = sharedPref.getAll();
-		int i=0;
 		for(Map.Entry<String,?> ent : keys.entrySet()){
 		            
 		            if(ent.getKey().equals(username)){
