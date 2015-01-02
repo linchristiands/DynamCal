@@ -68,16 +68,17 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 	}
 	private void bodyMetabolism()
 	{
+		int i=0;
 		for(Exercise e : Globalvar.userListExercise)
 		{
 			if(e.getName().equals("Body Metabolism"))
 			{
-				
+				i++;
 			}
-			else
-				Globalvar.userListExercise.add(new Exercise("Body Metabolism",User.currentUser.getPoids()*24));
-
+			
 		}
+		if (i<1)
+			Globalvar.userListExercise.add(new Exercise("Body Metabolism",User.currentUser.getPoids()*24));
 	}
 	@Override
 	public void onClick(View v) {

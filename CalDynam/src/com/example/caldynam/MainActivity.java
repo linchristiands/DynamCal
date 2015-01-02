@@ -97,14 +97,13 @@ public class MainActivity extends FragmentActivity implements TabListener {
 
 	}
 	@Override
-	protected void onDestroy()
+	protected void onStop()
 	{
 		saveExList();
 		saveEntryExoList();
 		saveEntryAlimList();
-		super.onDestroy();
+		super.onStop();
 	}
-	
 	public void getExList()
 	{
 		SharedPreferences mPrefs= getPreferences(MODE_PRIVATE);

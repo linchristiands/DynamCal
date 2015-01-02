@@ -6,6 +6,9 @@ import com.example.fragment.MenuFragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ConseilsActivity extends Activity{
@@ -19,6 +22,7 @@ public class ConseilsActivity extends Activity{
 	private TextView totaloutTv;
 	private TextView IMCTv;
 	private TextView diffTv;
+	private Button back;
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -29,6 +33,7 @@ public class ConseilsActivity extends Activity{
 	    totaloutTv=(TextView)findViewById(R.id.totaloutAdv);
 	    IMCTv=(TextView)findViewById(R.id.IMCTv);
 	    diffTv=(TextView)findViewById(R.id.diffTv);
+	    back=(Button)findViewById(R.id.backButtonReport);
 	    int month =MenuFragment.month+1;
 	    DateAdvice.setText(MenuFragment.day+"/"+month+"/"+MenuFragment.year);
 	    checkUserExList();
@@ -50,7 +55,19 @@ public class ConseilsActivity extends Activity{
 	    IMC=poids/taillecarre;
 	    IMCTv.setText("IMC : "+String.format("%.02f",IMC));
 	    diffTv.setText("Difference in and out : "+String.valueOf(Diff));
-	  }
+	    back.setOnClickListener(new OnClickListener()
+	    {
+			@Override
+			public void onClick(View v) {
+				if(v.getId()==R.id.backButtonReport)
+				{
+					finish();
+				}
+			}
+	    	
+	    });
+
+	}
 	
 	private void checkUserAlimList()
 	{
@@ -62,7 +79,9 @@ public class ConseilsActivity extends Activity{
 			}
 		}
 	}
-	
+	@Override
+	public void onBackPressed() {
+	}
 	private void checkUserExList()
 	{
 		Globalvar.userListExercise.clear();
