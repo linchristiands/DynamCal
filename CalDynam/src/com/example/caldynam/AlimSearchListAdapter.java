@@ -112,6 +112,7 @@ public class AlimSearchListAdapter extends ArrayAdapter<String>{
 					String AlimCapitalized= fname.substring(0,1).toUpperCase()+fname.substring(1);
 					Aliment a = new Aliment(AlimCapitalized,(float) calorie);
 					Globalvar.userListAliment.add(a);
+					Globalvar.AlimAct.RefreshListView();
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
