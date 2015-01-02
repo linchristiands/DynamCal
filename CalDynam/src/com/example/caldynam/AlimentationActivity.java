@@ -22,6 +22,8 @@ import com.example.fragment.MenuFragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -95,7 +97,10 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			//Rechercher l'aliment entré dans edtRechercheAliment avec l'API, récupérer la valeur calorique et l'ajouter au totalIN si trouvé 
 			//et ajouter l'aliment dans la liste txtListeAliment si trouvé
 			foundItem.clear();
-			new RetrieveID().execute();
+			if(isNetworkAvailable())
+				new RetrieveID().execute();
+			else
+				Toast.makeText(getApplication().getApplicationContext(), "Error, no internet connection", Toast.LENGTH_LONG).show();
 			break;
 			
 			
@@ -138,6 +143,14 @@ public class AlimentationActivity extends Activity implements OnClickListener {
                
                            
       }  
+	
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+	
 	class RetrieveID extends AsyncTask<String, Void, String> {
 
 	    private Exception exception;
@@ -168,6 +181,7 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 			    return result;
 			  
 			} catch (Exception e) { 
+
 			    return null;
 			}
 			finally {
@@ -195,68 +209,6 @@ public class AlimentationActivity extends Activity implements OnClickListener {
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
 				//new RetrieveCal().execute(foodFields.getString("item_id"));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    }
-	}
-	
- class RetrieveCal extends AsyncTask<String, Void, String> {
-
-	    private Exception exception;
-
-	    protected String doInBackground(String... urls) {
-	    	DefaultHttpClient   httpclient = new DefaultHttpClient(new BasicHttpParams());
-			String url="https://api.nutritionix.com/v1_1/item?id="+urls[0]+"&appId=bb655221&appKey=54235ea3948c6bbb61ff9a32701bbae7";
-			HttpGet httpget = new HttpGet(url);
-			// Depends on your web service
-
-			InputStream inputStream = null;
-			String result = null;
-			try {
-			    HttpResponse response = httpclient.execute(httpget);           
-			    HttpEntity entity = response.getEntity();
-
-			    inputStream = entity.getContent();
-			    // json is UTF-8 by default
-			    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
-			    StringBuilder sb = new StringBuilder();
-			    
-			    String line = null;
-			    while ((line = reader.readLine()) != null)
-			    {
-			        sb.append(line + "\n");
-			    }
-			    result = sb.toString();
-			    return result;
-			  
-			} catch (Exception e) { 
-			    return null;
-			}
-			finally {
-			    try{
-			    	if(inputStream != null)inputStream.close();}catch(Exception squish){}
-			}
-	    }
-
-	    protected void onPostExecute(String res) {
-	        // TODO: check this.exception 
-	        // TODO: do something with the feed
-	    	  try {
-	    		entryAliment+=":";
-				JSONObject food = new JSONObject(res);
-				double calorie=food.getDouble("nf_calories");
-				String userEntry=edtRechercheAliment.getText().toString();
-				String AlimCapitalized= userEntry.substring(0,1).toUpperCase()+userEntry.substring(1);
-				Aliment a = new Aliment(AlimCapitalized,(float) calorie);
-				Globalvar.userListAliment.add(a);
-				entryAliment+=a.getName()+"#"+a.getCalString();
-				totalIN+=calorie;
-				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(edtRechercheAliment.getWindowToken(), 0);
-				listViewAliment.setAdapter(adapter);
-				Toast.makeText(getApplicationContext(), "Item found, "+calorie+" calories added", Toast.LENGTH_SHORT).show();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
