@@ -2,12 +2,11 @@ package com.example.caldynam;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
+
 import com.example.fragment.TabsPagerAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
->>>>>>> origin/master
+
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;

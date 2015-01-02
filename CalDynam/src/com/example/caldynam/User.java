@@ -1,9 +1,5 @@
 package com.example.caldynam;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 public class User {
 
 	public static User currentUser;

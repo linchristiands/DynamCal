@@ -37,7 +37,7 @@ public final class R {
         public static final int ExSearchName=0x7f08001c;
         public static final int ExerciseList=0x7f080013;
         public static final int ExerciseListSearch=0x7f080014;
-        public static final int IMCTv=0x7f08000e;
+        public static final int IMCTv=0x7f08000f;
         public static final int TimeEx=0x7f08001d;
         public static final int action_settings=0x7f080029;
         public static final int addAlButton=0x7f080019;
@@ -53,7 +53,7 @@ public final class R {
         public static final int btnRechercheExercice=0x7f080011;
         public static final int btnTerminerAliment=0x7f080008;
         public static final int btnTerminerExercice=0x7f080012;
-        public static final int diffTv=0x7f08000f;
+        public static final int diffTv=0x7f08000e;
         public static final int edtRechercheAliment=0x7f080006;
         public static final int edtRechercheExercice=0x7f080010;
         public static final int edtUserFirstName=0x7f080001;
