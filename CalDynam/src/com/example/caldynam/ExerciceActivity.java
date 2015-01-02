@@ -66,6 +66,19 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 			}
 		}
 	}
+	private void bodyMetabolism()
+	{
+		for(Exercise e : Globalvar.userListExercise)
+		{
+			if(e.getName().equals("Body Metabolism"))
+			{
+				
+			}
+			else
+				Globalvar.userListExercise.add(new Exercise("Body Metabolism",User.currentUser.getPoids()*24));
+
+		}
+	}
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
@@ -76,7 +89,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.btnTerminerExercice:
-			Globalvar.userListExercise.add(new Exercise("Body Metabolism",User.currentUser.getPoids()*24));
+			bodyMetabolism();
 			totalOUT=Globalvar.sumCalEx();
 			entryEx=Globalvar.sumStringUserListEx();
 			Intent i = new Intent();
