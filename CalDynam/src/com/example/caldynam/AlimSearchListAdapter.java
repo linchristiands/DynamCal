@@ -21,8 +21,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+<<<<<<< HEAD
 
 import com.example.caldynam.MainActivity.Globalvar;
+=======
+>>>>>>> origin/master
 
 public class AlimSearchListAdapter extends ArrayAdapter<String>{
 	

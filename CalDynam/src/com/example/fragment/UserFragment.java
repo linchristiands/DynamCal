@@ -125,7 +125,6 @@ public class UserFragment extends Fragment implements OnClickListener {
 				User.currentUser = new User(parts);//utilisateur courant, sélectionné, profil actif
 				
 	  }
-	  //text.setText(String.format("Selected %s for item %s", menuItemName, listItemName));
 	  return true;
 	}
 
@@ -152,8 +151,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 		Map<String,?> keys = sharedPref.getAll();
 		int i=0;
 		for(Map.Entry<String,?> ent : keys.entrySet()){
-		            //Log.d("map values",ent.getKey() + ": " + 
-		            //                       ent.getValue().toString());    
+		       
 		            users[i]=ent.getKey();
 		            i++;
 		  
