@@ -77,6 +77,7 @@ public class ExerciceActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.btnTerminerExercice:
+			Globalvar.userListExercise.add(new Exercise("Body Metabolism",User.currentUser.getPoids()*24));
 			totalOUT=Globalvar.sumCalEx();
 			entryEx=Globalvar.sumStringUserListEx();
 			Intent i = new Intent();

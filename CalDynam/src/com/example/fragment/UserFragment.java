@@ -1,12 +1,16 @@
 package com.example.fragment;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.example.caldynam.AddUserActivity;
 import com.example.caldynam.AlimentationActivity;
+import com.example.caldynam.EntryAliment;
+import com.example.caldynam.EntryExercice;
 import com.example.caldynam.ModifUserActivity;
 import com.example.caldynam.R;
 import com.example.caldynam.User;
+import com.example.caldynam.MainActivity.Globalvar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -64,6 +68,29 @@ public class UserFragment extends Fragment implements OnClickListener {
 	  }
 	}
 	
+	private void removeUserEntries(String username)
+	{
+		ArrayList<EntryExercice> temp= new ArrayList<EntryExercice>();
+		ArrayList<EntryAliment> temp2= new ArrayList<EntryAliment>();
+		for(EntryAliment ea : Globalvar.entryAlimList)
+		{
+			if(ea.getUsername().equals(username))
+				temp2.add(ea);
+		}
+		for(EntryExercice ee : Globalvar.entryExoList)
+		{
+			if(ee.getUsername().equals(username))
+			temp.add(ee);
+		}
+		for(EntryAliment ea : temp2)
+		{
+			Globalvar.entryAlimList.remove(ea);
+		}
+		for(EntryExercice ee : temp)
+		{
+			Globalvar.entryExoList.remove(ee);
+		}
+	}
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 	  AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
@@ -82,6 +109,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 			editor.commit();	
 			fillListView();
 			adapter.notifyDataSetChanged();
+			removeUserEntries(listItemName);
 			
 	  }
 	  

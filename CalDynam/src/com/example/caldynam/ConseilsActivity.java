@@ -12,9 +12,13 @@ public class ConseilsActivity extends Activity{
 
 	private float totalIN=0;
 	private float totalOUT=0;
+	private float IMC=0;
+	private float Diff=0;
 	private TextView DateAdvice;
 	private TextView totalinTv;
 	private TextView totaloutTv;
+	private TextView IMCTv;
+	private TextView diffTv;
 	@Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -23,7 +27,10 @@ public class ConseilsActivity extends Activity{
 	    DateAdvice=(TextView)findViewById(R.id.DateAdvice);
 	    totalinTv=(TextView)findViewById(R.id.totalinAdv);
 	    totaloutTv=(TextView)findViewById(R.id.totaloutAdv);
-	    DateAdvice.setText(MenuFragment.day+"/"+MenuFragment.month+"/"+MenuFragment.year);
+	    IMCTv=(TextView)findViewById(R.id.IMCTv);
+	    diffTv=(TextView)findViewById(R.id.diffTv);
+	    int month =MenuFragment.month+1;
+	    DateAdvice.setText(MenuFragment.day+"/"+month+"/"+MenuFragment.year);
 	    checkUserExList();
 	    checkUserAlimList();
 	    for(Aliment a : Globalvar.userListAliment)
@@ -36,6 +43,13 @@ public class ConseilsActivity extends Activity{
 	    }
 	    totalinTv.setText("Total in :"+String.valueOf(totalIN)+" calories");
 	    totaloutTv.setText("Total out :"+String.valueOf(totalOUT)+" calories");
+	    Diff=totalIN-totalOUT;
+	    float poids=User.currentUser.getPoids();
+	    float taillemetre=(float)User.currentUser.getTaille()/100;
+	    float taillecarre=(float) Math.pow(taillemetre,2);
+	    IMC=poids/taillecarre;
+	    IMCTv.setText("IMC : "+String.format("%.02f",IMC));
+	    diffTv.setText("Difference in and out : "+String.valueOf(Diff));
 	  }
 	
 	private void checkUserAlimList()

@@ -3,45 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_margin="10dp" > 
-    
-    <Button
-        android:id="@+id/btnDate"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-    />
-    
-    <Button
-        android:id="@+id/btnAlimentation"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-android:text="Food"
-android:textColor="#FFFFFF"
-android:background="@drawable/customshape"
-    />
-        
-    <Button
-        android:id="@+id/btnExercice"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-android:text="Exercise"
-android:textColor="#FFFFFF"
-android:background="@drawable/customshape"
-    />
-    
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:id="@+id/btnAlimentation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customshape"
+            android:text="Food"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnExercice"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customshape"
+            android:text="Exercise"
+            android:textColor="#FFFFFF" />
+
         <Button
             android:id="@+id/btnConseils"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-android:text="Advice"
-android:textColor="#FFFFFF"
-android:background="@drawable/customshape"
-    />
-</LinearLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customshape"
+            android:text="Report"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
 </LinearLayout>
