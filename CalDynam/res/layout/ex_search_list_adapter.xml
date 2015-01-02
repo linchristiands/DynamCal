@@ -18,7 +18,9 @@
            android:layout_height="wrap_content"
            android:layout_centerInParent="true"
            android:layout_toRightOf="@id/TimeEx"
-           android:maxLength="4" />
+           android:maxLength="4" 
+           android:digits="0123456789"
+           />
     <Button android:id="@+id/addExButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
