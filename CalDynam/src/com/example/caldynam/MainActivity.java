@@ -2,8 +2,6 @@ package com.example.caldynam;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-
 import com.example.fragment.TabsPagerAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -12,11 +10,9 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.provider.Settings.Global;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;

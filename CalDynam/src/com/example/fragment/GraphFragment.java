@@ -45,9 +45,6 @@ public class GraphFragment extends Fragment {
         graph = (GraphView) rootView.findViewById(R.id.graph);
         txtDataAlim = (TextView) rootView.findViewById(R.id.txtDataAlim);
         txtDataExo = (TextView) rootView.findViewById(R.id.txtDataExo);
-        //graph.getViewport().setXAxisBoundsManual(true);
-        //graph.getViewport().setMinX(0);
-        //graph.getViewport().setMaxX(7);
         if(User.currentUser!=null && Globalvar.entryAlimList.size()>0){
         	setGraphAlimData();
         }
@@ -112,7 +109,7 @@ public class GraphFragment extends Fragment {
 		});
 		}
 		System.out.println("list : "+ list.toString());
-		//fill series with last 7 entries
+		//fill series with last entries
 		DataPoint[] dataPoints=null;
 		if(list.size()>=7){ 
 		dataPoints = new DataPoint[7];
@@ -196,7 +193,7 @@ private void setGraphExoData(){
 		});
 		}
 		System.out.println("list : "+ list.toString());
-		//fill series with last 7 entries
+		//fill series with last entries
 		DataPoint[] dataPoints=null;
 		if(list.size()>=7){ 
 		dataPoints = new DataPoint[7];
